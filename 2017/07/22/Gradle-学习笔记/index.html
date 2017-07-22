@@ -72,7 +72,7 @@
 
     
         <meta property="article:published_time" content="Sat Jul 22 2017 21:40:27 GMT+0800" />
-        <meta property="article:modified_time" content="Sat Jul 22 2017 22:07:23 GMT+0800" />
+        <meta property="article:modified_time" content="Sat Jul 22 2017 22:19:42 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -113,7 +113,7 @@
     "headline": "Gradle 学习笔记",
     "url": "http://yoursite.com/2017/07/22/Gradle-学习笔记/index.html",
     "datePublished": "Sat Jul 22 2017 21:40:27 GMT+0800",
-    "dateModified": "Sat Jul 22 2017 22:07:23 GMT+0800",
+    "dateModified": "Sat Jul 22 2017 22:19:42 GMT+0800",
     "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -335,7 +335,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gradle"><span class="post-toc-number">1.</span> <span class="post-toc-text">Gradle</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Gradle-初探"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">Gradle 初探</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Gradle-进阶"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">Gradle 进阶</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Gradle-多项目依赖"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">Gradle 多项目依赖</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Gradle-依赖管理"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">Gradle 依赖管理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Gradle-使用技巧"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">Gradle 使用技巧</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Gradle-自定义插件"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">Gradle 自定义插件</span></a></li></ol></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#gradle"><span class="post-toc-number">1.</span> <span class="post-toc-text">Gradle</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#gradle-初探"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">Gradle 初探</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#gradle-进阶"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">Gradle 进阶</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#gradle-多项目依赖"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">Gradle 多项目依赖</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#gradle-依赖管理"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">Gradle 依赖管理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#gradle-使用技巧"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">Gradle 使用技巧</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#gradle-自定义插件"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">Gradle 自定义插件</span></a></li></ol></li></ol></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -483,13 +483,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><blockquote>
+        <h3 id="gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><blockquote>
 <p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
 </blockquote>
 <p>[TOC]</p>
-<h5 id="Gradle-初探"><a href="#Gradle-初探" class="headerlink" title="Gradle 初探"></a>Gradle 初探</h5><ol>
-<li><p>项目全局 build.gradle</p>
-</li>
+<h5 id="gradle-初探"><a href="#Gradle-初探" class="headerlink" title="Gradle 初探"></a>Gradle 初探</h5><ol>
+<li>项目全局 build.gradle</li>
+</ol>
+<ol>
 <li><p>Module build.gradle</p>
 <ul>
 <li>apply plugin 领域</li>
@@ -505,7 +506,7 @@
 <p>​    通过多个 Gradle Tesk 相互调用，编译 Android 工程。</p>
 </li>
 </ol>
-<h5 id="Gradle-进阶"><a href="#Gradle-进阶" class="headerlink" title="Gradle 进阶"></a>Gradle 进阶</h5><ol>
+<h5 id="gradle-进阶"><a href="#Gradle-进阶" class="headerlink" title="Gradle 进阶"></a>Gradle 进阶</h5><ol>
 <li><p>更改项目结构</p>
 <p>​    将 Eclipse 项目结构修改，并导入到 Android Studio 中。</p>
 <p>​    Android 项目的项目结构要在 Android 领域中进行配置，如下所示：</p>
@@ -558,7 +559,7 @@
 <p>​    在开发中，不同版本通常有不同的代码功能。一般会有一个全局的变量开关，根据不同的版本设置不同的值。</p>
 </li>
 </ol>
-<h5 id="Gradle-多项目依赖"><a href="#Gradle-多项目依赖" class="headerlink" title="Gradle 多项目依赖"></a>Gradle 多项目依赖</h5><blockquote>
+<h5 id="gradle-多项目依赖"><a href="#Gradle-多项目依赖" class="headerlink" title="Gradle 多项目依赖"></a>Gradle 多项目依赖</h5><blockquote>
 <p>​    Android通过提供了一个新的依赖 —— aar 。通过 aar 方式进行项目依赖，主项目可以像使用 jar 包一样使用这个库项目。</p>
 </blockquote>
 <ol>
@@ -579,7 +580,7 @@
 <p>​    对于本地项目来说，既可以使用 module 的方式进行依赖，也可以和从远程仓库中拉取下来的 aar 一样，使用本地的 aar 进行依赖。</p>
 </li>
 </ol>
-<h5 id="Gradle-依赖管理"><a href="#Gradle-依赖管理" class="headerlink" title="Gradle 依赖管理"></a>Gradle 依赖管理</h5><blockquote>
+<h5 id="gradle-依赖管理"><a href="#Gradle-依赖管理" class="headerlink" title="Gradle 依赖管理"></a>Gradle 依赖管理</h5><blockquote>
 <p>​    依赖可的管理工作问题，特别是一个依赖的库项目同时还依赖了另一个库项目，如果某个库项目发生改变，而且与以前版本不兼容，就会导致依赖库发生问题。</p>
 </blockquote>
 <ol>
@@ -605,7 +606,7 @@
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">  	android = [<span class="string">compileSdkVersion:</span><span class="number">23</span>,</div><div class="line"><span class="symbol">  			   buildToolsVersion:</span> <span class="string">'23,0,2'</span>]</div><div class="line">  	dependencies = [<span class="string">supportv7:</span> <span class="string">'com.android.support:appcompat-v7:23.2.0'</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h5 id="Gradle-使用技巧"><a href="#Gradle-使用技巧" class="headerlink" title="Gradle 使用技巧"></a>Gradle 使用技巧</h5><ol>
+<h5 id="gradle-使用技巧"><a href="#Gradle-使用技巧" class="headerlink" title="Gradle 使用技巧"></a>Gradle 使用技巧</h5><ol>
 <li><p>生成 Gradle 编译脚本</p>
 <p>​    只要在目录下执行 gradle init wrapper 指令就可以生成这些必须的脚本文件，在在这些默认的脚本上进行修改就容易多了 。</p>
 </li>
@@ -651,7 +652,7 @@
 <p>​    Gradle 采用的是合并的方式进行编译，所有的文件、代码都会被 Merge 到一起，相同的资源名就会发生冲突。因此，需要对代码规范进行调整，对于资源、文件名来说，尽量使用 module 前缀来进行区分，jar 包、aar库的版本一定要进行统一管理。</p>
 </li>
 </ol>
-<h5 id="Gradle-自定义插件"><a href="#Gradle-自定义插件" class="headerlink" title="Gradle 自定义插件"></a>Gradle 自定义插件</h5><blockquote>
+<h5 id="gradle-自定义插件"><a href="#Gradle-自定义插件" class="headerlink" title="Gradle 自定义插件"></a>Gradle 自定义插件</h5><blockquote>
 <p>在 Gradle 中创建自定义插件，Gradle 提供了一下三种方式。</p>
 <ul>
 <li>在 build.gradle 脚本中直接使用。</li>
