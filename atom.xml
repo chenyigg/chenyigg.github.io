@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-22T13:52:10.800Z</updated>
+  <updated>2017-07-22T14:07:23.525Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,25 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2017/07/22/hello-world/"/>
-    <id>http://yoursite.com/2017/07/22/hello-world/</id>
-    <published>2017-07-22T13:52:10.800Z</published>
-    <updated>2017-07-22T13:52:10.800Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Gradle 学习笔记</title>
     <link href="http://yoursite.com/2017/07/22/Gradle-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/07/22/Gradle-学习笔记/</id>
     <published>2017-07-22T13:40:27.000Z</published>
-    <updated>2017-07-22T13:46:59.190Z</updated>
+    <updated>2017-07-22T14:07:23.525Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><blockquote>
 <p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
@@ -111,7 +97,9 @@
 <p>​    在开发中，不同版本通常有不同的代码功能。一般会有一个全局的变量开关，根据不同的版本设置不同的值。</p>
 </li>
 </ol>
-<h5 id="Gradle-多项目依赖"><a href="#Gradle-多项目依赖" class="headerlink" title="Gradle 多项目依赖"></a>Gradle 多项目依赖</h5><p>​    Android通过提供了一个新的依赖 —— aar 。通过 aar 方式进行项目依赖，主项目可以像使用 jar 包一样使用这个库项目。</p>
+<h5 id="Gradle-多项目依赖"><a href="#Gradle-多项目依赖" class="headerlink" title="Gradle 多项目依赖"></a>Gradle 多项目依赖</h5><blockquote>
+<p>​    Android通过提供了一个新的依赖 —— aar 。通过 aar 方式进行项目依赖，主项目可以像使用 jar 包一样使用这个库项目。</p>
+</blockquote>
 <ol>
 <li><p>jar 包依赖</p>
 <p>​    在每一个 module 的根目录下都有一个 libs 文件夹，开发者可以把 jar 包拷贝到该目录下，并单击鼠标右键在菜单中选择 “add as library” 进行引用（或者直接 Sync 项目也可以实现引用）。</p>
@@ -130,7 +118,9 @@
 <p>​    对于本地项目来说，既可以使用 module 的方式进行依赖，也可以和从远程仓库中拉取下来的 aar 一样，使用本地的 aar 进行依赖。</p>
 </li>
 </ol>
-<h5 id="Gradle-依赖管理"><a href="#Gradle-依赖管理" class="headerlink" title="Gradle 依赖管理"></a>Gradle 依赖管理</h5><p>​    依赖可的管理工作问题，特别是一个依赖的库项目同时还依赖了另一个库项目，如果某个库项目发生改变，而且与以前版本不兼容，就会导致依赖库发生问题。</p>
+<h5 id="Gradle-依赖管理"><a href="#Gradle-依赖管理" class="headerlink" title="Gradle 依赖管理"></a>Gradle 依赖管理</h5><blockquote>
+<p>​    依赖可的管理工作问题，特别是一个依赖的库项目同时还依赖了另一个库项目，如果某个库项目发生改变，而且与以前版本不兼容，就会导致依赖库发生问题。</p>
+</blockquote>
 <ol>
 <li><p>Gradle 依赖库缓存</p>
 <p>​    Gradle 拉取的 aar 库保存在本地的 ~/.gradle 文件夹和 ~/.m2 文件夹中。</p>
@@ -200,12 +190,14 @@
 <p>​    Gradle 采用的是合并的方式进行编译，所有的文件、代码都会被 Merge 到一起，相同的资源名就会发生冲突。因此，需要对代码规范进行调整，对于资源、文件名来说，尽量使用 module 前缀来进行区分，jar 包、aar库的版本一定要进行统一管理。</p>
 </li>
 </ol>
-<h5 id="Gradle-自定义插件"><a href="#Gradle-自定义插件" class="headerlink" title="Gradle 自定义插件"></a>Gradle 自定义插件</h5><p>在 Gradle 中创建自定义插件，Gradle 提供了一下三种方式。</p>
+<h5 id="Gradle-自定义插件"><a href="#Gradle-自定义插件" class="headerlink" title="Gradle 自定义插件"></a>Gradle 自定义插件</h5><blockquote>
+<p>在 Gradle 中创建自定义插件，Gradle 提供了一下三种方式。</p>
 <ul>
 <li>在 build.gradle 脚本中直接使用。</li>
 <li>在 buildSrc 中使用。</li>
 <li>在独立 Module 中使用。</li>
 </ul>
+</blockquote>
 ]]></content>
     
     <summary type="html">
