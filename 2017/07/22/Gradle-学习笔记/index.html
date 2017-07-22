@@ -72,7 +72,7 @@
 
     
         <meta property="article:published_time" content="Sat Jul 22 2017 21:40:27 GMT+0800" />
-        <meta property="article:modified_time" content="Sat Jul 22 2017 22:47:15 GMT+0800" />
+        <meta property="article:modified_time" content="Sat Jul 22 2017 23:00:23 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -113,7 +113,7 @@
     "headline": "Gradle 学习笔记",
     "url": "http://yoursite.com/2017/07/22/Gradle-学习笔记/index.html",
     "datePublished": "Sat Jul 22 2017 21:40:27 GMT+0800",
-    "dateModified": "Sat Jul 22 2017 22:47:15 GMT+0800",
+    "dateModified": "Sat Jul 22 2017 23:00:23 GMT+0800",
     "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -486,80 +486,81 @@
         <h2 id="gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><blockquote>
 <p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
 </blockquote>
-<h4 id="gradle-初探"><a href="#Gradle-初探" class="headerlink" title="Gradle 初探"></a>Gradle 初探</h4><p>1.<strong>项目全局 build.gradle</strong></p>
-<p>2.<strong>Module build.gradle</strong></p>
+<p>[TOC]</p>
+<h4 id="gradle-初探"><a href="#Gradle-初探" class="headerlink" title="Gradle 初探"></a>Gradle 初探</h4><p><strong>1. 项目全局 build.gradle</strong></p>
+<p><strong>2. Module build.gradle</strong></p>
 <ul>
 <li>apply plugin 领域</li>
 <li>android 领域</li>
 <li>dependencies 领域</li>
 <li>Android Gradle DSL 的<a href="http://google.github.io/android-gradle-dsl/current/index.html" target="_blank" rel="external">文档</a></li>
 </ul>
-<p>3.<strong>local.properties</strong></p>
+<p><strong>3. local.properties</strong></p>
 <p>IDE 通过 Android_Home 环境变量自动生成配置文件。</p>
-<p>4.<strong>Gradle Task</strong></p>
+<p><strong>4. Gradle Task</strong></p>
 <p>通过多个 Gradle Tesk 相互调用，编译 Android 工程。</p>
-<h4 id="gradle-进阶"><a href="#Gradle-进阶" class="headerlink" title="Gradle 进阶"></a>Gradle 进阶</h4><p>1.<strong>更改项目结构</strong></p>
+<h4 id="gradle-进阶"><a href="#Gradle-进阶" class="headerlink" title="Gradle 进阶"></a>Gradle 进阶</h4><p><strong>1. 更改项目结构</strong></p>
 <p>​    将 Eclipse 项目结构修改，并导入到 Android Studio 中。</p>
 <p>​    Android 项目的项目结构要在 Android 领域中进行配置，如下所示：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sourceSets &#123;</div><div class="line">  	main &#123;</div><div class="line">      	java.srcDris = [<span class="string">'src'</span>]</div><div class="line">      	res.srcDris = [<span class="string">'res'</span>]</div><div class="line">      	asset.srcDris = [<span class="string">'assets'</span>]</div><div class="line">      	jni.srcDris = [<span class="string">'jni'</span>]</div><div class="line">      	jniLibs.srcDris = [<span class="string">'libs'</span>]</div><div class="line">      	mainifest.srcFile <span class="string">'AndroidMainifest.xml'</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.<strong>构建全局配置</strong></p>
+<p><strong>2. 构建全局配置</strong></p>
 <p>​    在项目全局 build.gradle 中，通过 ext 领域指定全局的配置信息。</p>
 <p>​    通过 rootProject.ext 引用所有的全局参数。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">  	compileSdkVersion = <span class="number">23</span></div><div class="line">  	buildToolsVersion = <span class="string">"23.0.2"</span></div><div class="line">  	minSdkVersion = <span class="number">14</span></div><div class="line">  	targetSdkVersion = <span class="number">23</span></div><div class="line">  	versionCode = <span class="number">3</span></div><div class="line">  	versionName = <span class="string">"1.0.1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3.<strong>构建 defaultConfig</strong></p>
+<p><strong>3. 构建 defaultConfig</strong></p>
 <p>​    在 Gradle 脚本中写代码，以便动态控制编译过程。</p>
-<p>4.<strong>构建 buildTypes</strong></p>
+<p><strong>4. 构建 buildTypes</strong></p>
 <p>​    通过创建不同的构建类型，从而生成不同类型的 apk 。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">buildTypes &#123;</div><div class="line">  	release &#123;</div><div class="line">      	minifyEnabled <span class="literal">false</span></div><div class="line">      	proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>​    构建类型 buildTypes 的继承</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">xys.initWith(buildTypes.debug)</div><div class="line">xys &#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>5.<strong>构建 signingConfigs</strong></p>
-<p>6.<strong>生成签名</strong></p>
+<p><strong>5. 构建 signingConfigs</strong></p>
+<p><strong>6. 生成签名</strong></p>
 <p>​    Build -&gt; Generate Signed APK 选择 module，点击 Next，选择 “Create new …” ，填写必要的信息</p>
 <p>​    签名配置</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">  	xys &#123;</div><div class="line">      	storeFile file(<span class="string">"xys_key.jks"</span>)</div><div class="line">      	storePassWord <span class="string">"1234567"</span></div><div class="line">      	keyAlias <span class="string">"xys"</span></div><div class="line">      	keyPassword <span class="string">"1234567"</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>7.<strong>Android 领域中的可选配置</strong></p>
+<p><strong>7. Android 领域中的可选配置</strong></p>
 <ul>
 <li>compileOptions：配置编译的选项（Java 的编译版本）</li>
 <li>lintOptions：控制 Lint 代码检查。在 Lint Check 的时候，编译会因为 Lint的 error 而终止。</li>
 </ul>
-<p>8.<strong>构建 Proguard</strong></p>
+<p><strong>8. 构建 Proguard</strong></p>
 <p>​    Proguard 配置是Android 的 apk 混淆文件配置，它同样可以精简代码、资源，优化代码结构。</p>
-<p>9.<strong>Gradle 动态参数配置</strong></p>
-<p>10.<strong>System.properties 方式</strong></p>
+<p><strong>9. Gradle 动态参数配置</strong></p>
+<p><strong>10. System.properties 方式</strong></p>
 <p>​    打开 gradle.properties 文件，将配置参数配置到该文件中，然后通过 System.properties[KEY] 获取参数。</p>
-<p>11.<strong>多渠道打包</strong></p>
+<p><strong>11. 多渠道打包</strong></p>
 <p>​    创建渠道占位符：在 AndroidMainifest 文件的 Application 节点下，创建 meta-data 节点。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">	<span class="attr">android:name</span>=<span class="string">"PRODUCT"</span></div><div class="line">	<span class="attr">android:value</span>=<span class="string">"$&#123;CHANNEL_VALUE&#125;"</span> /&gt;</div></pre></td></tr></table></figure>
 <p>​    配置 Gradle 脚本</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">productFlavors &#123;</div><div class="line">  	product1 &#123;&#125;</div><div class="line">  	product2 &#123;&#125;</div><div class="line">  	product3 &#123;&#125;</div><div class="line">&#125;</div><div class="line">productFlavors.all &#123; flavor -&gt;</div><div class="line">  	flavor.manifestPlaceholders = [<span class="string">CHANNEL_VALUE:</span>name]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>12.<strong>生成重命名包</strong></p>
-<p>13.<strong>为不同版本添加不同代码</strong></p>
+<p><strong>12. 生成重命名包</strong></p>
+<p><strong>13. 为不同版本添加不同代码</strong></p>
 <p>​    在开发中，不同版本通常有不同的代码功能。一般会有一个全局的变量开关，根据不同的版本设置不同的值。</p>
 <h4 id="gradle-多项目依赖"><a href="#Gradle-多项目依赖" class="headerlink" title="Gradle 多项目依赖"></a>Gradle 多项目依赖</h4><blockquote>
 <p>​    Android通过提供了一个新的依赖 —— <em>aar</em> 。通过 <em>aar</em> 方式进行项目依赖，主项目可以像使用 jar 包一样使用这个库项目。</p>
 </blockquote>
-<p>1.<strong>jar 包依赖</strong></p>
+<p><strong>1. jar 包依赖</strong></p>
 <p>​    在每一个 module 的根目录下都有一个 libs 文件夹，开发者可以把 jar 包拷贝到该目录下，并单击鼠标右键在菜单中选择 “add as library” 进行引用（或者直接 Sync 项目也可以实现引用）。</p>
 <p>​    使用 Gradle 编译成 jar 包</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">task makeJar(<span class="string">type:</span> Jar) &#123;</div><div class="line">  	<span class="comment">// 清空已经存在的 jar 包</span></div><div class="line">  	delete <span class="string">'libs/sdk.jar'</span></div><div class="line">  	<span class="comment">// 指定生成的 jar 包名</span></div><div class="line">  	baseName <span class="string">'sdk'</span></div><div class="line">  	<span class="comment">// 从 class 文件生成 jar 包</span></div><div class="line">  	from(<span class="string">'build/intermediates/classes/debug/com/xys'</span>)</div><div class="line">  	<span class="comment">// 打包进 jar 包后的文件目录结构</span></div><div class="line">  	into(<span class="string">'com/xys/'</span>)</div><div class="line">  	<span class="comment">// 去掉不需要打包的目录和文件</span></div><div class="line">  	exclude(<span class="string">'test/'</span>,<span class="string">'BuildConfig.class'</span>,<span class="string">'R.class'</span>)</div><div class="line">  	<span class="comment">// 去掉 R 文件</span></div><div class="line">  	exclude &#123;it.name.startsWith(<span class="string">'R$S'</span>);&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.<strong>本地库项目依赖</strong></p>
+<p><strong>2. 本地库项目依赖</strong></p>
 <p>​    Android Studio 提供库项目的依赖方法。</p>
 <p>​    创建 module：File -&gt; New -&gt; New Module ，在弹出的界面中选择 Android Library 。</p>
-<p>3.<strong>远程仓库依赖</strong></p>
+<p><strong>3. 远程仓库依赖</strong></p>
 <p>​    Gradle 支持以 aar 的形式依赖远程服务器上的库项目。如：引用 Maven 中央库</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.jckewharton.scalpel.scalpel:scalpel:1.1.2'</span></div></pre></td></tr></table></figure>
-<p>4.<strong>本地 aar 依赖</strong></p>
+<p><strong>4. 本地 aar 依赖</strong></p>
 <p>​    对于本地项目来说，既可以使用 module 的方式进行依赖，也可以和从远程仓库中拉取下来的 aar 一样，使用本地的 aar 进行依赖。</p>
 <h4 id="gradle-依赖管理"><a href="#Gradle-依赖管理" class="headerlink" title="Gradle 依赖管理"></a>Gradle 依赖管理</h4><blockquote>
-<p>​    依赖可的管理工作问题，特别是一个依赖的库项目同时还依赖了另一个库项目，如果某个库项目发生改变，而且与以前版本不兼容，就会导致依赖库发生问题。</p>
+<p>​    依赖可的管理工作问题，特别是一个依赖的库项目同时还依赖了另一个库项目，如果某个库项目发生改变，而且与以前版本不兼容，就会导致依赖库发生问题</p>
 </blockquote>
-<p>1.<strong>Gradle 依赖库缓存</strong></p>
+<p><strong>1. Gradle 依赖库缓存</strong></p>
 <p>​    Gradle 拉取的 aar 库保存在本地的 ~/.gradle 文件夹和 ~/.m2 文件夹中。</p>
-<p>2.<strong>利用 Gradle 的通知机制</strong></p>
+<p><strong>2. 利用 Gradle 的通知机制</strong></p>
 <p>​    当项目有版本库更新之后，Gradle 会给出一种通知机制，即利用 Gradle 的检查周期进行 <em>check</em> 。</p>
-<p>3.<strong>利用 Gradle 的依赖检查</strong></p>
-<p>4.<strong>Gradle 依赖传递</strong></p>
+<p><strong>3. 利用 Gradle 的依赖检查</strong></p>
+<p><strong>4. Gradle 依赖传递</strong></p>
 <p>​    当主项目 A 依赖库项目 B ，库项目 B 依赖库项目 C 和 jar 包 D 。</p>
 <p>​    B项目及其依赖的所有项目，即 C 和 D ：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT’</div></pre></td></tr></table></figure>
@@ -567,41 +568,41 @@
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT<span class="meta">@aar</span>’</div></pre></td></tr></table></figure>
 <p>​    排除一个库引用的其他库：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">compile (‘com.xxx.yyy.aaa<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>’) &#123;</div><div class="line">  	exclude <span class="string">module:</span> <span class="string">'com.xxx.yyy.bbb:1.1.2'</span></div><div class="line">  	exclude <span class="string">module:</span> <span class="string">'com.xxx.yyy.ccc:1.1.3'</span></div><div class="line">&#125;</div><div class="line">compile <span class="string">'com.xxx.yyy.bbb:1.1.2'</span></div><div class="line">compile <span class="string">'com.xxx.yyy.ccc:1.1.2'</span></div></pre></td></tr></table></figure>
-<p>4.<strong>Gradle 依赖统一管理</strong></p>
+<p><strong>5. Gradle 依赖统一管理</strong></p>
 <p>​    将全局参数抽取出来，写到一个单独的配置文件中，如：config.gradle 文件</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">  	android = [<span class="string">compileSdkVersion:</span><span class="number">23</span>,</div><div class="line"><span class="symbol">  			   buildToolsVersion:</span> <span class="string">'23,0,2'</span>]</div><div class="line">  	dependencies = [<span class="string">supportv7:</span> <span class="string">'com.android.support:appcompat-v7:23.2.0'</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="gradle-使用技巧"><a href="#Gradle-使用技巧" class="headerlink" title="Gradle 使用技巧"></a>Gradle 使用技巧</h4><p>1.<strong>生成 Gradle 编译脚本</strong></p>
+<h4 id="gradle-使用技巧"><a href="#Gradle-使用技巧" class="headerlink" title="Gradle 使用技巧"></a>Gradle 使用技巧</h4><p><strong>1. 生成 Gradle 编译脚本</strong></p>
 <p>​    只要在目录下执行 gradle init wrapper 指令就可以生成这些必须的脚本文件，在在这些默认的脚本上进行修改就容易多了 。</p>
-<p>2.<strong>Gradle peer not authenticated</strong></p>
+<p><strong>2. Gradle peer not authenticated</strong></p>
 <p>​    更新 Gradle 的依赖包时，发生 peer not authenticated 的异常，导致 Gradle 无法编译。</p>
 <p>​    使用 VPN 进行网络访问，或者修改 jcenter 库的地址：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jcenter &#123;</div><div class="line">  	url <span class="string">"http://jcenter.bintray.com/"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3.<strong>Gradle 性能检测</strong></p>
+<p><strong>3. Gradle 性能检测</strong></p>
 <p>​    Gradle 编译工具本身就内置了一个性能分析工具 —— profile 。执行一下脚本：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gradle build -profile</div></pre></td></tr></table></figure>
 <p>​    在根目录的 Build 目录下就会生成一个 profile 文件，通过分析该 profile 文件，适当关掉一些不必要的 Task 可提高 Gradle 编译速度。</p>
-<p>4.<strong>Gradle 加速</strong></p>
+<p><strong>4. Gradle 加速</strong></p>
 <p>​    Gradle 在编译时会执行大量的 Task ，同时生成很多文件。因此磁盘 IO 会造成编译速度缓慢。最好的办法是：更换固态（增加磁盘 IO 速度）、尽量减少本地库项目的依赖，多使用 <strong>aar</strong> 进行依赖。</p>
 <p>​    在 gradle.properties 中添加一下代码，开启 Gradle 的多线程和多核心支持。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">org.gradle.daemon=<span class="literal">true</span></div><div class="line">org.gradle.parallel=<span class="literal">true</span></div><div class="line">org.gradle.configureondemand=<span class="literal">true</span></div></pre></td></tr></table></figure>
 <p>​    在 build.gradle 中开启 Gradle 的增量编译。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dexOptions &#123;</div><div class="line">incremental <span class="literal">true</span></div><div class="line">	javaMaxHeapSize <span class="string">"4g"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>5.<strong>增加编译内存</strong></p>
+<p><strong>5. 增加编译内存</strong></p>
 <p>​    当遇到编译时内存溢出时，则需要对默认的内存设置进行调整，即在 gradle.properties 文件中增加内存配置。</p>
-<p>6.<strong>Gradle 调用终端指令</strong></p>
+<p><strong>6. Gradle 调用终端指令</strong></p>
 <p>​    例如，新建一个 Task，</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">task testcmd &#123;</div><div class="line">  	println <span class="string">'git log --pretty=oneline -1'</span>.execute([], project.rootDir).text</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>7.<strong>使用 Gradle 精简资源</strong></p>
+<p><strong>7. 使用 Gradle 精简资源</strong></p>
 <p>​    <strong>minifyEnabled</strong> 指令不仅可以对代码进行混淆，还可以对代码进行<em>优化、精简</em>。同时配合 <strong>shrinkResources</strong> 指令，还可以<em>清除</em>项目工程文件中无效的资源文件，进一步精简 APK 文件。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  	......</div><div class="line">  	buildTypes &#123;</div><div class="line">      	minifyEnabled <span class="literal">true</span></div><div class="line">      	shrinkResources <span class="literal">true</span></div><div class="line">      	proguardFiles getDefaultProguandfile(<span class="string">'proguard-android.txt'</span>),<span class="string">'proguard-rule.pro'</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>8.<strong>清除 Gradle 缓存</strong></p>
+<p><strong>8. 清除 Gradle 缓存</strong></p>
 <p>​    使用 gradle clean 指令清理 Gradle 缓存；还有 gradle –refresh-dependencies 指令重新刷新全部的依赖库，获取新的版本库。</p>
-<p>9.<strong>使用 Gradle 本地缓存</strong></p>
+<p><strong>9. 使用 Gradle 本地缓存</strong></p>
 <p>​    在 Setting - Build - Build Tools - Gradle 标签中，选择 Offline work 并指定默认的 .gradle 文件夹。</p>
-<p>10.<strong>Gradle 版本问题导致的编译错误</strong></p>
+<p><strong>10. Gradle 版本问题导致的编译错误</strong></p>
 <p>​    例如 Gradle Version 导致的问题是由于 gradle wrapper 导致的。解决这个问题：Setting -&gt; Build - Build Tools - Gradle -&gt; Project - Level setting，勾选 Use default gradle wrapper (recommended)。</p>
 <p>​    一般来说，应该在本地配置稳定的 Gradle 版本，即勾选 Use local gradle distribution 选项，填写本地的 Gradle 路径（需要配置好 Gradle Shell 的环境变量）。新版的 Android Studio 中，已经自带 Gradle 了，可以直接链接到 Android Studio 中的 Gradle。</p>
-<p>11.<strong>Gradle 资源冲突</strong></p>
+<p><strong>11. Gradle 资源冲突</strong></p>
 <p>​    Gradle 采用的是合并的方式进行编译，所有的文件、代码都会被 <strong><em>Merge</em></strong> 到一起，相同的资源名就会发生冲突。因此，需要对<em>代码规范</em>进行调整，对于资源、文件名来说，尽量使用 module 前缀来进行区分，jar 包、aar库的版本一定要进行统一管理。</p>
 <h4 id="gradle-自定义插件"><a href="#Gradle-自定义插件" class="headerlink" title="Gradle 自定义插件"></a>Gradle 自定义插件</h4><blockquote>
 <p>在 Gradle 中创建<strong><em>自定义</em></strong>插件，Gradle 提供了一下三种方式。</p>
