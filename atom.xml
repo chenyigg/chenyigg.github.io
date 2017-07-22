@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-22T15:00:23.596Z</updated>
+  <updated>2017-07-22T15:14:54.067Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://yoursite.com/2017/07/22/Gradle-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/07/22/Gradle-学习笔记/</id>
     <published>2017-07-22T13:40:27.000Z</published>
-    <updated>2017-07-22T15:00:23.596Z</updated>
+    <updated>2017-07-22T15:14:54.067Z</updated>
     
     <content type="html"><![CDATA[<h2 id="gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><blockquote>
-<p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
+<p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。 <a id="more"></a> 例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
 </blockquote>
 <p>[TOC]</p>
 <h4 id="gradle-初探"><a href="#Gradle-初探" class="headerlink" title="Gradle 初探"></a>Gradle 初探</h4><p><strong>1. 项目全局 build.gradle</strong></p>
@@ -155,8 +155,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;gradle&quot;&gt;&lt;a href=&quot;#Gradle&quot; class=&quot;headerlink&quot; title=&quot;Gradle&quot;&gt;&lt;/a&gt;Gradle&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。例如库项目
+      &lt;h2 id=&quot;Gradle&quot;&gt;&lt;a href=&quot;#Gradle&quot; class=&quot;headerlink&quot; title=&quot;Gradle&quot;&gt;&lt;/a&gt;Gradle&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。
     
     </summary>
     
