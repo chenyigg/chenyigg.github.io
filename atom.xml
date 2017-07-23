@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-22T15:14:54.067Z</updated>
+  <updated>2017-07-23T07:12:23.665Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/07/22/Gradle-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2017/07/22/Gradle-学习笔记/</id>
     <published>2017-07-22T13:40:27.000Z</published>
-    <updated>2017-07-22T15:14:54.067Z</updated>
+    <updated>2017-07-23T07:12:23.665Z</updated>
     
     <content type="html"><![CDATA[<h2 id="gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><blockquote>
 <p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。 <a id="more"></a> 例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
@@ -104,7 +104,7 @@
 <p>​    B项目及其依赖的所有项目，即 C 和 D ：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT’</div></pre></td></tr></table></figure>
 <p>​    引用 B 项目，但不进行依赖传递，即不依赖库项目 C ：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT<span class="meta">@aar</span>’</div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT <span class="meta">@aar</span>’</div></pre></td></tr></table></figure>
 <p>​    排除一个库引用的其他库：</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">compile (‘com.xxx.yyy.aaa<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>’) &#123;</div><div class="line">  	exclude <span class="string">module:</span> <span class="string">'com.xxx.yyy.bbb:1.1.2'</span></div><div class="line">  	exclude <span class="string">module:</span> <span class="string">'com.xxx.yyy.ccc:1.1.3'</span></div><div class="line">&#125;</div><div class="line">compile <span class="string">'com.xxx.yyy.bbb:1.1.2'</span></div><div class="line">compile <span class="string">'com.xxx.yyy.ccc:1.1.2'</span></div></pre></td></tr></table></figure>
 <p><strong>5. Gradle 依赖统一管理</strong></p>
