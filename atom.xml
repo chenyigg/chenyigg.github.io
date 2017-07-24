@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-23T07:12:23.665Z</updated>
+  <updated>2017-07-24T12:22:17.258Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,146 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式 之 工厂模式</title>
+    <link href="http://yoursite.com/2017/07/24/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/24/工厂模式/</id>
+    <published>2017-07-24T12:10:27.000Z</published>
+    <updated>2017-07-24T12:22:17.258Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><blockquote>
+<p><strong>工厂方法模式</strong> 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。</p>
+<p><strong>抽象工厂模式</strong> 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。 <a id="more"></a> </p>
+</blockquote>
+<h3 id="定义简单工厂"><a href="#定义简单工厂" class="headerlink" title="定义简单工厂"></a>定义简单工厂</h3><p>​    <strong>简单工厂</strong> ，虽然不是真正的设计模式，但仍不失为一个简单的方法，可以将客户程序从具体类 <strong>解耦</strong> 。</p>
+<p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82.png" alt=""></p>
+<h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">abstract</span> Product <span class="title">factoryMethod</span><span class="params">(String type)</span></span></div></pre></td></tr></table></figure>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-要依赖抽象不要依赖具体类-依赖倒置原则"><a href="#1-要依赖抽象，不要依赖具体类。——-依赖倒置原则" class="headerlink" title="1. 要依赖抽象，不要依赖具体类。—— 依赖倒置原则"></a>1. 要依赖抽象，不要依赖具体类。—— 依赖倒置原则</h4><blockquote>
+<ul>
+<li>变量不可以持有具体类的引用。</li>
+<li>不要让类派生自具体类。</li>
+<li>不要覆盖基类中已实现的方法。</li>
+</ul>
+</blockquote>
+<p>​    不能让高层组件依赖低层组件，而且，不管高层或低层组件，“两者” 都应该依赖于 <strong>抽象</strong> 。所谓 “高层” 组件，是由其他低层组件定义其 <em>行为</em> 的类。</p>
+<p>​    如果有一个不像是会改变的类，那么在代码中直接实例化具体类也就没有什么大碍。另一方面，如果有个类可能改变，你可以采用一些好技巧（例如工厂方法）来封装改变。</p>
+<h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sauce = ingredientFactory.createSauce();</div></pre></td></tr></table></figure>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<h3 id="工厂方法和抽象工厂的区别"><a href="#工厂方法和抽象工厂的区别" class="headerlink" title="工厂方法和抽象工厂的区别"></a>工厂方法和抽象工厂的区别</h3><ol>
+<li>工厂方法使用 <strong>继承</strong> ：把对象的创建 <em>委托</em> 给子类，子类实现工厂方法来创建对象；抽象工厂使用对象 <strong>组合</strong> ：对象的创建被实现在工厂接口所暴露出来的 <strong>方法</strong> 中。</li>
+<li>抽象工厂是用来创建整个 <strong>产品家族</strong> 的；而工厂方法只是创建一个 <strong>产品</strong> 。抽象工厂的具体工厂经常实现工厂方法来创建它的产品。</li>
+<li>所有工厂模式都通过 <strong>减少</strong> 应用程序与具体类之间的 <strong>依赖</strong> 促进松耦合。</li>
+<li>工厂是很有威力的技巧，帮助我们针对抽象编程，而不要针对具体类编程。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;工厂模式&quot;&gt;&lt;a href=&quot;#工厂模式&quot; class=&quot;headerlink&quot; title=&quot;工厂模式&quot;&gt;&lt;/a&gt;工厂模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;工厂方法模式&lt;/strong&gt; 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;抽象工厂模式&lt;/strong&gt; 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式 之 装饰者模式</title>
+    <link href="http://yoursite.com/2017/07/24/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/24/装饰者模式/</id>
+    <published>2017-07-24T07:15:33.000Z</published>
+    <updated>2017-07-24T12:22:37.826Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h1><blockquote>
+<p><strong>装饰者模式</strong> 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。 <a id="more"></a> </p>
+<ul>
+<li>装饰者和被装饰者对象有相同的超类型。</li>
+<li>你可以用一个或多个装饰者包装一个对象。</li>
+<li>既然装饰者和被装饰者对象有相同的超类型，所以在任何需要原始对象（被包装的）的场合，可以用装饰过的对象代替它。</li>
+<li>装饰者可以在所委托被装饰者的行为 <em>之前 <strong>与/或</strong> 之后</em> ，加上自己的行为，以达到特定的目的。</li>
+<li>对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地用你喜欢的装饰者来装饰对象。</li>
+</ul>
+</blockquote>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-类应该对扩展开放对修改关闭"><a href="#1-类应该对扩展开放，对修改关闭。" class="headerlink" title="1. 类应该对扩展开放，对修改关闭。"></a>1. 类应该对扩展开放，对修改关闭。</h4><p>​    允许类容易 <strong>扩展</strong> ，在不修改现有代码的情况下，就可搭配新的行为。这样的设计具有 <strong>弹性</strong> 就可以应对改变，可以接受新的功能来应对改变的需求。</p>
+<p>​    在 <strong>选择</strong> 需要被扩展的代码部分时要小心。每个地方都采用 <em>开放—关闭原则</em> ，是一种浪费，也没必要，还会导致代码变得复杂且难以理解。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>​    装饰者会导致设计中出现许多小对象，如果过度使用，会让程序变得复杂。</p>
+<p>​    只有在针对 <strong>抽象</strong> 组件类型编程时，才不会因为装饰者而受到影响。如果的确针对 <strong>特定</strong> 的具体组件编程，就应该重新思考应用架构，以及装饰者是否适合。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;装饰者模式&quot;&gt;&lt;a href=&quot;#装饰者模式&quot; class=&quot;headerlink&quot; title=&quot;装饰者模式&quot;&gt;&lt;/a&gt;装饰者模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;装饰者模式&lt;/strong&gt; 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式 之 观察者模式</title>
+    <link href="http://yoursite.com/2017/07/24/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/24/观察者模式/</id>
+    <published>2017-07-24T02:05:07.000Z</published>
+    <updated>2017-07-24T12:22:27.112Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><blockquote>
+<p><strong>观察者模式</strong> 定义了对象之间的<em>一对多</em>依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。 <a id="more"></a> </p>
+</blockquote>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<h3 id="松耦合的威力"><a href="#松耦合的威力" class="headerlink" title="松耦合的威力"></a>松耦合的威力</h3><blockquote>
+<p>当两个对象之间 <strong>松耦合</strong> ，它们依然可以交互，但是不太清楚彼此的 <strong>细节</strong> 。</p>
+<p>观察者模式提供了一种对象设计，让主题和观察者之间松耦合。</p>
+</blockquote>
+<p>​    主题只知道观察者实现了某个接口（也就是 <strong>Observer 接口</strong>）。主题不需要知道观察者的具体类是谁、做了些什么或其他任何细节。主题唯一依赖的东西是一个实现 Observer 接口的 <strong>对象列表</strong> ，我们可以随时增加观察者。</p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-为了交互对象之间的松耦合设计而努力"><a href="#1-为了交互对象之间的松耦合设计而努力。" class="headerlink" title="1. 为了交互对象之间的松耦合设计而努力。"></a>1. 为了交互对象之间的松耦合设计而努力。</h4><p>​    松耦合的设计之所以能让我们建立有 <em>弹性</em> 的 OO 系统，能够应对变化，是因为对象之间的 <strong>相互依赖</strong> 降到了最低。</p>
+<h4 id="2-找出程序中会变化的方面然后将其和固定不变的方面相分类"><a href="#2-找出程序中会变化的方面，然后将其和固定不变的方面相分类。" class="headerlink" title="2. 找出程序中会变化的方面，然后将其和固定不变的方面相分类。"></a>2. 找出程序中会变化的方面，然后将其和固定不变的方面相分类。</h4><p>​    在观察者模式中，会改变的是主题的状态，以及观察者的数目和类型。用这个模式，你可以改变依赖于主题状态的对象，却不必改变主题。这就叫 <strong>提前规划</strong>！</p>
+<h4 id="3-针对接口编程不针对实现编程"><a href="#3-针对接口编程，不针对实现编程。" class="headerlink" title="3. 针对接口编程，不针对实现编程。"></a>3. 针对接口编程，不针对实现编程。</h4><p>​    主题与观察者都使用 <strong>接口</strong> ：观察者利用主题的接口向主题注册，而主题利用观察者接口通知观察者。这样就可以让两者之间运转正常，又同时具有松耦合的优点。</p>
+<h4 id="4-多用组合少用继承"><a href="#4-多用组合，少用继承。" class="headerlink" title="4. 多用组合，少用继承。"></a>4. 多用组合，少用继承。</h4><p>​    观察者模式利用 “组合” 将许多观察者 <strong>组合</strong> 进主题中，对象之间的这种关系不是通过继承产生的，而是通过运行时利用组合的方式而产生的。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>​    有多个观察者时，不可以依赖 <strong>特定</strong> 的通知次序。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;观察者模式&quot;&gt;&lt;a href=&quot;#观察者模式&quot; class=&quot;headerlink&quot; title=&quot;观察者模式&quot;&gt;&lt;/a&gt;观察者模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;观察者模式&lt;/strong&gt; 定义了对象之间的&lt;em&gt;一对多&lt;/em&gt;依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式 之 策略模式</title>
+    <link href="http://yoursite.com/2017/07/23/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/23/策略模式/</id>
+    <published>2017-07-23T12:10:27.000Z</published>
+    <updated>2017-07-24T12:22:04.339Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><blockquote>
+<p><strong>策略模式</strong> 定义了算法族，分别<em>封装</em>起来，让它们之间可以相互<em>替换</em>，此模式让算法的变化独立与使用算法的客户。 <a id="more"></a> </p>
+</blockquote>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-找出应用中可能需要变化之处把它们独立出来不要和那些不需要变化的代码混在一起"><a href="#1-找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。" class="headerlink" title="1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。"></a>1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。</h4><p>​    把会 <strong>变化</strong> 的部分取出并 <strong><em>封装</em></strong> 起来，以便以后可以轻易地改动或扩充此部分，而不影响不需要变化的其他部分。</p>
+<p>​    所有的模式都提供了一套方法让 “系统中的某部分改变 <strong>不会影响</strong> 其他部分” 。</p>
+<h4 id="2-针对接口编程而不是针对实现编程"><a href="#2-针对接口编程，而不是针对实现编程。" class="headerlink" title="2. 针对接口编程，而不是针对实现编程。"></a>2. 针对接口编程，而不是针对实现编程。</h4><p>​    以前的做法：行为来自超类的具体实现，或是继承某个借口并有子类自行实现而来。装两种做法都 <strong>依赖于</strong> “ 实现” ，没办法更改行为（除非写更多代码）。</p>
+<p>​    新设计：子类将使用接口所表示的行为，特定的具体行为编写在<em>实现了接口的类</em>中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">  	<span class="comment">// 每只鸭子都会引用实现该行为接口的对象</span></div><div class="line">  	QuackBehavior quackBehavior;</div><div class="line">  	...</div><div class="line">  	<span class="comment">// 通过委托 quackBehavior 对象，处理行为</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performQuack</span><span class="params">()</span> </span>&#123;</div><div class="line">      quackBehavior.quack();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-多用组合少用继承"><a href="#3-多用组合，少用继承。" class="headerlink" title="3. 多用组合，少用继承。"></a>3. 多用组合，少用继承。</h4><p>​    使用组合建立系统具有很大的 <em>弹性</em> ，不仅可将算法族封装成类，更可以 “在运行时 <strong>动态</strong> 地改变行为” 。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;策略模式&quot;&gt;&lt;a href=&quot;#策略模式&quot; class=&quot;headerlink&quot; title=&quot;策略模式&quot;&gt;&lt;/a&gt;策略模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;策略模式&lt;/strong&gt; 定义了算法族，分别&lt;em&gt;封装&lt;/em&gt;起来，让它们之间可以相互&lt;em&gt;替换&lt;/em&gt;，此模式让算法的变化独立与使用算法的客户。
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Gradle 学习笔记</title>
