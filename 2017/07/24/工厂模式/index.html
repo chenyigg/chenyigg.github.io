@@ -76,7 +76,7 @@
 
     
         <meta property="article:published_time" content="Mon Jul 24 2017 20:10:27 GMT+0800" />
-        <meta property="article:modified_time" content="Mon Jul 24 2017 20:22:17 GMT+0800" />
+        <meta property="article:modified_time" content="Mon Jul 24 2017 20:38:40 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
@@ -119,7 +119,7 @@
     "headline": "设计模式 之 工厂模式",
     "url": "http://yoursite.com/2017/07/24/工厂模式/index.html",
     "datePublished": "Mon Jul 24 2017 20:10:27 GMT+0800",
-    "dateModified": "Mon Jul 24 2017 20:22:17 GMT+0800",
+    "dateModified": "Mon Jul 24 2017 20:38:40 GMT+0800",
     "description": "工厂模式
 工厂方法模式 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
 抽象工厂模式 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。",
@@ -496,9 +496,9 @@
 <p><strong>抽象工厂模式</strong> 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。 <a id="more"></a> </p>
 </blockquote>
 <h3 id="定义简单工厂"><a href="#定义简单工厂" class="headerlink" title="定义简单工厂"></a>定义简单工厂</h3><p>​    <strong>简单工厂</strong> ，虽然不是真正的设计模式，但仍不失为一个简单的方法，可以将客户程序从具体类 <strong>解耦</strong> 。</p>
-<p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82.png" alt=""></p>
+<p><img src="http://img.mukewang.com/57a36e6c00015d0d08390528.png" alt=""></p>
 <h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">abstract</span> Product <span class="title">factoryMethod</span><span class="params">(String type)</span></span></div></pre></td></tr></table></figure>
-<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p><img src="http://img.mukewang.com/57a388f80001feec07690453.png" alt=""></p>
 <h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-要依赖抽象不要依赖具体类-依赖倒置原则"><a href="#1-要依赖抽象，不要依赖具体类。——-依赖倒置原则" class="headerlink" title="1. 要依赖抽象，不要依赖具体类。—— 依赖倒置原则"></a>1. 要依赖抽象，不要依赖具体类。—— 依赖倒置原则</h4><blockquote>
 <ul>
 <li>变量不可以持有具体类的引用。</li>
@@ -509,7 +509,7 @@
 <p>​    不能让高层组件依赖低层组件，而且，不管高层或低层组件，“两者” 都应该依赖于 <strong>抽象</strong> 。所谓 “高层” 组件，是由其他低层组件定义其 <em>行为</em> 的类。</p>
 <p>​    如果有一个不像是会改变的类，那么在代码中直接实例化具体类也就没有什么大碍。另一方面，如果有个类可能改变，你可以采用一些好技巧（例如工厂方法）来封装改变。</p>
 <h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sauce = ingredientFactory.createSauce();</div></pre></td></tr></table></figure>
-<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p><img src="http://img.mukewang.com/57a39dc60001bf0b06180511.png" alt=""></p>
 <h3 id="工厂方法和抽象工厂的区别"><a href="#工厂方法和抽象工厂的区别" class="headerlink" title="工厂方法和抽象工厂的区别"></a>工厂方法和抽象工厂的区别</h3><ol>
 <li>工厂方法使用 <strong>继承</strong> ：把对象的创建 <em>委托</em> 给子类，子类实现工厂方法来创建对象；抽象工厂使用对象 <strong>组合</strong> ：对象的创建被实现在工厂接口所暴露出来的 <strong>方法</strong> 中。</li>
 <li>抽象工厂是用来创建整个 <strong>产品家族</strong> 的；而工厂方法只是创建一个 <strong>产品</strong> 。抽象工厂的具体工厂经常实现工厂方法来创建它的产品。</li>
