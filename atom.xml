@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T03:48:17.703Z</updated>
+  <updated>2017-07-25T03:52:20.795Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://yoursite.com/2017/07/25/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/25/适配器模式与外观模式/</id>
     <published>2017-07-25T03:48:33.000Z</published>
-    <updated>2017-07-25T03:48:17.703Z</updated>
+    <updated>2017-07-25T03:52:20.795Z</updated>
     
     <content type="html"><![CDATA[<h1 id="适配器模式与外观模式"><a href="#适配器模式与外观模式" class="headerlink" title="适配器模式与外观模式"></a>适配器模式与外观模式</h1><blockquote>
-<p> <strong>适配器模式</strong> 将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口 <em>不兼容</em> 的类可以合作无间。</p>
+<p> <strong>适配器模式</strong> 将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口 <em>不兼容</em> 的类可以合作无间。<a id="more"></a> </p>
 <ul>
 <li>客户通过目标接口调用 <em>适配器的方法</em> 对适配器发出请求。</li>
 <li>适配器使用被适配器者接口把 <strong>请求</strong> 转换成被适配者的一个或多个调用接口。</li>
@@ -61,7 +61,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;适配器模式与外观模式&quot;&gt;&lt;a href=&quot;#适配器模式与外观模式&quot; class=&quot;headerlink&quot; title=&quot;适配器模式与外观模式&quot;&gt;&lt;/a&gt;适配器模式与外观模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt; &lt;strong&gt;适配器模式&lt;/strong&gt; 将
+&lt;p&gt; &lt;strong&gt;适配器模式&lt;/strong&gt; 将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口 &lt;em&gt;不兼容&lt;/em&gt; 的类可以合作无间。
     
     </summary>
     
