@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T02:05:34.804Z</updated>
+  <updated>2017-07-25T02:08:07.381Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,20 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2017/07/25/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2017/07/25/装饰者模式/</id>
-    <published>2017-07-25T02:05:34.804Z</published>
-    <updated>2017-07-25T02:05:34.804Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>设计模式 之 命令模式</title>
@@ -100,6 +86,40 @@
       &lt;h1 id=&quot;工厂模式&quot;&gt;&lt;a href=&quot;#工厂模式&quot; class=&quot;headerlink&quot; title=&quot;工厂模式&quot;&gt;&lt;/a&gt;工厂模式&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;工厂方法模式&lt;/strong&gt; 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;抽象工厂模式&lt;/strong&gt; 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式 之 装饰者模式</title>
+    <link href="http://yoursite.com/2017/07/24/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/24/装饰者模式/</id>
+    <published>2017-07-24T07:15:35.000Z</published>
+    <updated>2017-07-25T02:12:38.726Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h1><blockquote>
+<p><strong>装饰者模式</strong> 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。 <a id="more"></a> </p>
+<ul>
+<li>装饰者和被装饰者对象有相同的超类型。</li>
+<li>你可以用一个或多个装饰者包装一个对象。</li>
+<li>既然装饰者和被装饰者对象有相同的超类型，所以在任何需要原始对象（被包装的）的场合，可以用装饰过的对象代替它。</li>
+<li>装饰者可以在所委托被装饰者的行为 <em>之前 <strong>与/或</strong> 之后</em> ，加上自己的行为，以达到特定的目的。</li>
+<li>对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地用你喜欢的装饰者来装饰对象。</li>
+</ul>
+</blockquote>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://img.mukewang.com/57a213c20001a3ee08100592.png" alt=""></p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-类应该对扩展开放对修改关闭"><a href="#1-类应该对扩展开放，对修改关闭。" class="headerlink" title="1. 类应该对扩展开放，对修改关闭。"></a>1. 类应该对扩展开放，对修改关闭。</h4><p>​    允许类容易 <strong>扩展</strong> ，在不修改现有代码的情况下，就可搭配新的行为。这样的设计具有 <strong>弹性</strong> 就可以应对改变，可以接受新的功能来应对改变的需求。</p>
+<p>​    在 <strong>选择</strong> 需要被扩展的代码部分时要小心。每个地方都采用 <em>开放—关闭原则</em> ，是一种浪费，也没必要，还会导致代码变得复杂且难以理解。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>​    装饰者会导致设计中出现许多小对象，如果过度使用，会让程序变得复杂。</p>
+<p>​    只有在针对 <strong>抽象</strong> 组件类型编程时，才不会因为装饰者而受到影响。如果的确针对 <strong>特定</strong> 的具体组件编程，就应该重新思考应用架构，以及装饰者是否适合。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;装饰者模式&quot;&gt;&lt;a href=&quot;#装饰者模式&quot; class=&quot;headerlink&quot; title=&quot;装饰者模式&quot;&gt;&lt;/a&gt;装饰者模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;装饰者模式&lt;/strong&gt; 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
     
     </summary>
     
