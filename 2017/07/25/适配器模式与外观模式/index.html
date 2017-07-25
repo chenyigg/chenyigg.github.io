@@ -12,7 +12,7 @@
     
     <title>
         
-            设计模式 之 装饰者模式 | 
+            设计模式 之 适配器模式与外观模式 | 
         
         Hexo
     </title>
@@ -35,8 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="John Doe">
-    <meta name="description" itemprop="description" content="装饰者模式
-装饰者模式 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。">
+    <meta name="description" itemprop="description" content="">
     <meta name="keywords" content="null">
 
     <!-- Site Verification -->
@@ -66,28 +65,26 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="设计模式 之 装饰者模式 | Hexo">
+    <meta property="og:title" content="设计模式 之 适配器模式与外观模式 | Hexo">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="装饰者模式
-装饰者模式 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。">
+    <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="Mon Jul 24 2017 15:15:35 GMT+0800" />
-        <meta property="article:modified_time" content="Tue Jul 25 2017 10:12:38 GMT+0800" />
+        <meta property="article:published_time" content="Tue Jul 25 2017 11:48:33 GMT+0800" />
+        <meta property="article:modified_time" content="Tue Jul 25 2017 11:48:17 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="设计模式 之 装饰者模式 | Hexo">
-    <meta name="twitter:description" content="装饰者模式
-装饰者模式 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。">
+    <meta name="twitter:title" content="设计模式 之 适配器模式与外观模式 | Hexo">
+    <meta name="twitter:description" content="">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://yoursite.com" />
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2017/07/24/装饰者模式/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2017/07/25/适配器模式与外观模式/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -113,12 +110,11 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "设计模式 之 装饰者模式",
-    "url": "http://yoursite.com/2017/07/24/装饰者模式/index.html",
-    "datePublished": "Mon Jul 24 2017 15:15:35 GMT+0800",
-    "dateModified": "Tue Jul 25 2017 10:12:38 GMT+0800",
-    "description": "装饰者模式
-装饰者模式 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。",
+    "headline": "设计模式 之 适配器模式与外观模式",
+    "url": "http://yoursite.com/2017/07/25/适配器模式与外观模式/index.html",
+    "datePublished": "Tue Jul 25 2017 11:48:33 GMT+0800",
+    "dateModified": "Tue Jul 25 2017 11:48:17 GMT+0800",
+    "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://yoursite.com"
@@ -339,7 +335,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#装饰者模式"><span class="post-toc-number">1.</span> <span class="post-toc-text">装饰者模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类图"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">类图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设计原则"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">设计原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-类应该对扩展开放对修改关闭"><span class="post-toc-number">1.0.2.1.</span> <span class="post-toc-text">1. 类应该对扩展开放，对修改关闭。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">注意</span></a></li></ol></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#适配器模式与外观模式"><span class="post-toc-number">1.</span> <span class="post-toc-text">适配器模式与外观模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#适配器模式-类图"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">适配器模式 —— 类图</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#"><span class="post-toc-number">2.</span> <span class="post-toc-text"> </span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#外观模式-类图"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">外观模式 —— 类图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设计原则"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">设计原则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-最少知识原则只和你的密友谈话"><span class="post-toc-number">2.0.2.1.</span> <span class="post-toc-text">1. 最少知识原则：只和你的密友谈话。</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#装饰者-适配器-外观"><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">装饰者、适配器、外观</span></a></li></ol></li></ol></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -377,7 +373,7 @@
         
     
             <p class="article-headline-p">
-                设计模式 之 装饰者模式
+                设计模式 之 适配器模式与外观模式
             </p>
         </div>
 
@@ -396,7 +392,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>John Doe</strong>
-        <span>7月 24, 2017</span>
+        <span>7月 25, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -436,7 +432,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=设计模式 之 装饰者模式&url=http://yoursite.com/2017/07/24/装饰者模式/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=设计模式 之 适配器模式与外观模式&url=http://yoursite.com/2017/07/25/适配器模式与外观模式/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -445,7 +441,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=设计模式 之 装饰者模式&url=http://yoursite.com/2017/07/24/装饰者模式/index.html&via=John Doe" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=设计模式 之 适配器模式与外观模式&url=http://yoursite.com/2017/07/25/适配器模式与外观模式/index.html&via=John Doe" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -454,7 +450,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/24/装饰者模式/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/07/25/适配器模式与外观模式/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -463,7 +459,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/24/装饰者模式/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/07/25/适配器模式与外观模式/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -487,21 +483,40 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h1><blockquote>
-<p><strong>装饰者模式</strong> 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。 <a id="more"></a> </p>
+        <h1 id="适配器模式与外观模式"><a href="#适配器模式与外观模式" class="headerlink" title="适配器模式与外观模式"></a>适配器模式与外观模式</h1><blockquote>
+<p> <strong>适配器模式</strong> 将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口 <em>不兼容</em> 的类可以合作无间。</p>
 <ul>
-<li>装饰者和被装饰者对象有相同的超类型。</li>
-<li>你可以用一个或多个装饰者包装一个对象。</li>
-<li>既然装饰者和被装饰者对象有相同的超类型，所以在任何需要原始对象（被包装的）的场合，可以用装饰过的对象代替它。</li>
-<li>装饰者可以在所委托被装饰者的行为 <em>之前 <strong>与/或</strong> 之后</em> ，加上自己的行为，以达到特定的目的。</li>
-<li>对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地用你喜欢的装饰者来装饰对象。</li>
+<li>客户通过目标接口调用 <em>适配器的方法</em> 对适配器发出请求。</li>
+<li>适配器使用被适配器者接口把 <strong>请求</strong> 转换成被适配者的一个或多个调用接口。</li>
+<li>客户接收调用的结果，但并未察觉这一切是适配器在起 <strong>转换</strong> 作用。</li>
 </ul>
 </blockquote>
-<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://img.mukewang.com/57a213c20001a3ee08100592.png" alt=""></p>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-类应该对扩展开放对修改关闭"><a href="#1-类应该对扩展开放，对修改关闭。" class="headerlink" title="1. 类应该对扩展开放，对修改关闭。"></a>1. 类应该对扩展开放，对修改关闭。</h4><p>​    允许类容易 <strong>扩展</strong> ，在不修改现有代码的情况下，就可搭配新的行为。这样的设计具有 <strong>弹性</strong> 就可以应对改变，可以接受新的功能来应对改变的需求。</p>
-<p>​    在 <strong>选择</strong> 需要被扩展的代码部分时要小心。每个地方都采用 <em>开放—关闭原则</em> ，是一种浪费，也没必要，还会导致代码变得复杂且难以理解。</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>​    装饰者会导致设计中出现许多小对象，如果过度使用，会让程序变得复杂。</p>
-<p>​    只有在针对 <strong>抽象</strong> 组件类型编程时，才不会因为装饰者而受到影响。如果的确针对 <strong>特定</strong> 的具体组件编程，就应该重新思考应用架构，以及装饰者是否适合。</p>
+<h3 id="适配器模式-类图"><a href="#适配器模式-——-类图" class="headerlink" title="适配器模式 —— 类图"></a>适配器模式 —— 类图</h3><ol>
+<li>对象适配器（组合）：</li>
+</ol>
+<p><img src="http://img.mukewang.com/57aae10a00012e5d06710293.png" alt=""></p>
+<ol>
+<li><p>类适配器（继承）：</p>
+<p><img src="http://img.mukewang.com/57aae3c900012ee908380320.png" alt=""></p>
+</li>
+</ol>
+<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><blockquote>
+<p> <strong>外观模式</strong> 提供一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。</p>
+</blockquote>
+<h3 id="外观模式-类图"><a href="#外观模式-——-类图" class="headerlink" title="外观模式 —— 类图"></a>外观模式 —— 类图</h3><p><img src="http://img.mukewang.com/57aaee0500014f3807280378.png" alt=""></p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-最少知识原则只和你的密友谈话"><a href="#1-最少知识原则：只和你的密友谈话。" class="headerlink" title="1. 最少知识原则：只和你的密友谈话。"></a>1. 最少知识原则：只和你的密友谈话。</h4><p>​    当设计一个系统时，不管是任何对象，你都要注意它所 <strong>交互</strong> 的类有哪些，并注意它和这些类是如何交互的。</p>
+<p>就任何对象而言，在该对象的方法内，我们只应该调用属于以下范围的方法：</p>
+<ul>
+<li>该对象本身</li>
+<li>被当做方法的参数而传进来的对象</li>
+<li>此方法所创建或实例化的任何对象</li>
+<li>对象的任何组件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不采用这个原则：先取得温度计对象，再从温度计对象取得温度。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</div><div class="line">  	<span class="keyword">return</span> station.getThermometer().getTemperature();</div><div class="line">&#125;</div><div class="line"><span class="comment">// 采用这个原则：在气象站中添加一个方法，用来向温度计请求温度</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</div><div class="line">  	<span class="keyword">return</span> station.getTemperature();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="装饰者-适配器-外观"><a href="#装饰者、适配器、外观" class="headerlink" title="装饰者、适配器、外观"></a>装饰者、适配器、外观</h3><p>​    装饰者：不改变接口，但加入责任。</p>
+<p>​    适配器：将一个接口转成另一个接口。</p>
+<p>​    外观：让接口更简单。</p>
+<p>​    客户不会意识到 <em>装饰者或适配器</em> 的存在，实现解耦。</p>
 
     
 
@@ -521,21 +536,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/07/24/工厂模式/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/07/24/观察者模式/" id="post_nav-older" class="next-content">
+        <a href="/2017/07/25/命令模式/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

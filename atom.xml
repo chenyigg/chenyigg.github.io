@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-25T02:08:07.381Z</updated>
+  <updated>2017-07-25T03:48:17.703Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式 之 适配器模式与外观模式</title>
+    <link href="http://yoursite.com/2017/07/25/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/25/适配器模式与外观模式/</id>
+    <published>2017-07-25T03:48:33.000Z</published>
+    <updated>2017-07-25T03:48:17.703Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="适配器模式与外观模式"><a href="#适配器模式与外观模式" class="headerlink" title="适配器模式与外观模式"></a>适配器模式与外观模式</h1><blockquote>
+<p> <strong>适配器模式</strong> 将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口 <em>不兼容</em> 的类可以合作无间。</p>
+<ul>
+<li>客户通过目标接口调用 <em>适配器的方法</em> 对适配器发出请求。</li>
+<li>适配器使用被适配器者接口把 <strong>请求</strong> 转换成被适配者的一个或多个调用接口。</li>
+<li>客户接收调用的结果，但并未察觉这一切是适配器在起 <strong>转换</strong> 作用。</li>
+</ul>
+</blockquote>
+<h3 id="适配器模式-类图"><a href="#适配器模式-——-类图" class="headerlink" title="适配器模式 —— 类图"></a>适配器模式 —— 类图</h3><ol>
+<li>对象适配器（组合）：</li>
+</ol>
+<p><img src="http://img.mukewang.com/57aae10a00012e5d06710293.png" alt=""></p>
+<ol>
+<li><p>类适配器（继承）：</p>
+<p><img src="http://img.mukewang.com/57aae3c900012ee908380320.png" alt=""></p>
+</li>
+</ol>
+<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><blockquote>
+<p> <strong>外观模式</strong> 提供一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。</p>
+</blockquote>
+<h3 id="外观模式-类图"><a href="#外观模式-——-类图" class="headerlink" title="外观模式 —— 类图"></a>外观模式 —— 类图</h3><p><img src="http://img.mukewang.com/57aaee0500014f3807280378.png" alt=""></p>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-最少知识原则只和你的密友谈话"><a href="#1-最少知识原则：只和你的密友谈话。" class="headerlink" title="1. 最少知识原则：只和你的密友谈话。"></a>1. 最少知识原则：只和你的密友谈话。</h4><p>​    当设计一个系统时，不管是任何对象，你都要注意它所 <strong>交互</strong> 的类有哪些，并注意它和这些类是如何交互的。</p>
+<p>就任何对象而言，在该对象的方法内，我们只应该调用属于以下范围的方法：</p>
+<ul>
+<li>该对象本身</li>
+<li>被当做方法的参数而传进来的对象</li>
+<li>此方法所创建或实例化的任何对象</li>
+<li>对象的任何组件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不采用这个原则：先取得温度计对象，再从温度计对象取得温度。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</div><div class="line">  	<span class="keyword">return</span> station.getThermometer().getTemperature();</div><div class="line">&#125;</div><div class="line"><span class="comment">// 采用这个原则：在气象站中添加一个方法，用来向温度计请求温度</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getTemp</span><span class="params">()</span> </span>&#123;</div><div class="line">  	<span class="keyword">return</span> station.getTemperature();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="装饰者-适配器-外观"><a href="#装饰者、适配器、外观" class="headerlink" title="装饰者、适配器、外观"></a>装饰者、适配器、外观</h3><p>​    装饰者：不改变接口，但加入责任。</p>
+<p>​    适配器：将一个接口转成另一个接口。</p>
+<p>​    外观：让接口更简单。</p>
+<p>​    客户不会意识到 <em>装饰者或适配器</em> 的存在，实现解耦。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;适配器模式与外观模式&quot;&gt;&lt;a href=&quot;#适配器模式与外观模式&quot; class=&quot;headerlink&quot; title=&quot;适配器模式与外观模式&quot;&gt;&lt;/a&gt;适配器模式与外观模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt; &lt;strong&gt;适配器模式&lt;/strong&gt; 将
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>设计模式 之 命令模式</title>
