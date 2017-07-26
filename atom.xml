@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-26T14:11:10.456Z</updated>
+  <updated>2017-07-26T14:17:06.954Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://yoursite.com/2017/07/26/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/26/代理模式/</id>
     <published>2017-07-26T10:22:34.000Z</published>
-    <updated>2017-07-26T14:11:10.456Z</updated>
+    <updated>2017-07-26T14:17:06.954Z</updated>
     
     <content type="html"><![CDATA[<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><blockquote>
-<p><strong>代理模式</strong> 为另一个对象提供一个替身或占位符以控制对这个对象的访问，让代表对象 <em>控制</em> 某对象的访问，被代理的对象可以是远程的对象、创建开销大的对象或需要安全控制的对象。</p>
+<p><strong>代理模式</strong> 为另一个对象提供一个替身或占位符以控制对这个对象的访问，让代表对象 <em>控制</em> 某对象的访问<a id="more"></a>，被代理的对象可以是远程的对象、创建开销大的对象或需要安全控制的对象。</p>
 <ol>
 <li>首先是 Subject ，它为 RealSubject 和 Proxy 提供了接口。通过实现同一个接口，Proxy 在 RealSubject 出现的地方取代它。</li>
 <li>RealSubject 是真正做事的对象，它是被 Proxy 代理和控制访问的对象。</li>
@@ -69,7 +69,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;代理模式&quot;&gt;&lt;a href=&quot;#代理模式&quot; class=&quot;headerlink&quot; title=&quot;代理模式&quot;&gt;&lt;/a&gt;代理模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;代理模式&lt;/strong&gt; 为另一个对象提供一个替身或占位符以控制对这个对象的访问
+&lt;p&gt;&lt;strong&gt;代理模式&lt;/strong&gt; 为另一个对象提供一个替身或占位符以控制对这个对象的访问，让代表对象 &lt;em&gt;控制&lt;/em&gt; 某对象的访问
     
     </summary>
     
@@ -81,10 +81,10 @@
     <link href="http://yoursite.com/2017/07/26/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/26/状态模式/</id>
     <published>2017-07-26T02:42:22.000Z</published>
-    <updated>2017-07-26T14:10:41.589Z</updated>
+    <updated>2017-07-26T14:16:41.194Z</updated>
     
     <content type="html"><![CDATA[<h1 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h1><blockquote>
-<p><strong>状态模式</strong> 允许对象在内部状态改变时改变它的 <em>行为</em>，对象看起来好像修改了它的类。\</p>
+<p><strong>状态模式</strong> 允许对象在内部状态改变时改变它的 <em>行为</em>，对象看起来好像修改了它的类。<a id="more"></a></p>
 <ol>
 <li>因为这个模式将状态封装成为独立的类，并将动作委托到代表当前状态的对象。我们知道行为会随着内部状态而改变。</li>
 <li>使用组合通过简单引用不同的状态对象来造成类改变的假象。</li>
@@ -107,7 +107,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;状态模式&quot;&gt;&lt;a href=&quot;#状态模式&quot; class=&quot;headerlink&quot; title=&quot;状态模式&quot;&gt;&lt;/a&gt;状态模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;状态模式&lt;/strong&gt; 允许对象在内部状态改变时改变它的 &lt;em&gt;行为&lt;/em
+&lt;p&gt;&lt;strong&gt;状态模式&lt;/strong&gt; 允许对象在内部状态改变时改变它的 &lt;em&gt;行为&lt;/em&gt;，对象看起来好像修改了它的类。
     
     </summary>
     
@@ -119,10 +119,10 @@
     <link href="http://yoursite.com/2017/07/25/%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/25/迭代器与组合模式/</id>
     <published>2017-07-25T12:18:30.000Z</published>
-    <updated>2017-07-26T14:10:01.078Z</updated>
+    <updated>2017-07-26T14:16:28.301Z</updated>
     
     <content type="html"><![CDATA[<h1 id="迭代器与组合模式"><a href="#迭代器与组合模式" class="headerlink" title="迭代器与组合模式"></a>迭代器与组合模式</h1><blockquote>
-<p><strong>迭代器模式</strong> 提供一种方法 <em>顺序访问</em> 一个聚合对象中的各个元素，而又 <em>不暴露</em> 其内部的表示。</p>
+<p><strong>迭代器模式</strong> 提供一种方法 <em>顺序访问</em> 一个聚合对象中的各个元素，而又 <em>不暴露</em> 其内部的表示。<a id="more"></a></p>
 <p>是迭代器模式把在元素之间游走的 <strong>责任</strong> 交给迭代器，而不是聚合对象。这不仅让聚合的接口和实现变得更加 <strong>简洁</strong> ，也可以让聚合更专注在它所应该专注的事情上面。</p>
 </blockquote>
 <h3 id="迭代器模式-类图"><a href="#迭代器模式-——-类图" class="headerlink" title="迭代器模式 —— 类图"></a>迭代器模式 —— 类图</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F.png" alt=""></p>
@@ -145,7 +145,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;迭代器与组合模式&quot;&gt;&lt;a href=&quot;#迭代器与组合模式&quot; class=&quot;headerlink&quot; title=&quot;迭代器与组合模式&quot;&gt;&lt;/a&gt;迭代器与组合模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;迭代器模式&lt;/strong&gt; 提供一种方法 &lt;em
+&lt;p&gt;&lt;strong&gt;迭代器模式&lt;/strong&gt; 提供一种方法 &lt;em&gt;顺序访问&lt;/em&gt; 一个聚合对象中的各个元素，而又 &lt;em&gt;不暴露&lt;/em&gt; 其内部的表示。
     
     </summary>
     
@@ -157,10 +157,10 @@
     <link href="http://yoursite.com/2017/07/25/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/25/模板方法模式/</id>
     <published>2017-07-25T07:18:03.000Z</published>
-    <updated>2017-07-26T14:09:03.516Z</updated>
+    <updated>2017-07-26T14:16:12.561Z</updated>
     
     <content type="html"><![CDATA[<h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><blockquote>
-<p><strong>模板方法模式</strong> 在一个方法中定义一个算法的 <strong>骨架</strong> ，而将一些步骤 <strong>延迟</strong> 到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。</p>
+<p><strong>模板方法模式</strong> 在一个方法中定义一个算法的 <strong>骨架</strong> ，而将一些步骤 <strong>延迟</strong> 到子类中。<a id="more"></a>模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。</p>
 <p>​    这个方法将算法定义成 <em>一组步骤</em>，其中的任何步骤都可以是抽象的，由子类 <em>负责实现</em> 。这可以确保算法结构保持不变，同时由子类提供部分实现。</p>
 <p>​    工厂方法是模板方法的一个特殊版本。</p>
 </blockquote>
@@ -173,7 +173,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;模板方法模式&quot;&gt;&lt;a href=&quot;#模板方法模式&quot; class=&quot;headerlink&quot; title=&quot;模板方法模式&quot;&gt;&lt;/a&gt;模板方法模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;模板方法模式&lt;/strong&gt; 在一个方法中定义一个算法的 &lt;st
+&lt;p&gt;&lt;strong&gt;模板方法模式&lt;/strong&gt; 在一个方法中定义一个算法的 &lt;strong&gt;骨架&lt;/strong&gt; ，而将一些步骤 &lt;strong&gt;延迟&lt;/strong&gt; 到子类中。
     
     </summary>
     
@@ -270,10 +270,10 @@
     <link href="http://yoursite.com/2017/07/24/%E5%8D%95%E4%BB%B6%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/24/单件模式/</id>
     <published>2017-07-24T14:11:27.000Z</published>
-    <updated>2017-07-26T14:09:23.197Z</updated>
+    <updated>2017-07-26T14:15:49.186Z</updated>
     
     <content type="html"><![CDATA[<h1 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h1><blockquote>
-<p><strong>单件模式</strong> 确保一个类只有一个实例，并提供一个全局访问点。</p>
+<p><strong>单件模式</strong> 确保一个类只有一个实例，并提供一个全局访问点。<a id="more"></a></p>
 </blockquote>
 <h3 id="代码例子"><a href="#代码例子" class="headerlink" title="代码例子"></a>代码例子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">  	<span class="comment">// volatile 关键字确保：当 singleton 变量被初始化成 Singleton 实例时，多个线程正确地处理 		// singleton 变量</span></div><div class="line">  	<span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;</div><div class="line">  	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="comment">// 用 “双重检查加锁” ，在 getInstance() 中减少使用 同步 。</span></div><div class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">      	<span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</div><div class="line">          	<span class="keyword">synchronized</span> (Singleton.class) &#123;</div><div class="line">              	<span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</div><div class="line">                	singleton = <span class="keyword">new</span> Singleton();</div><div class="line">                &#125;</div><div class="line">          	&#125;</div><div class="line">      	&#125;</div><div class="line">      	<span class="keyword">return</span> singleton;</div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BB%B6%E6%A8%A1%E5%BC%8F.png" alt=""></p>
@@ -282,7 +282,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;单件模式&quot;&gt;&lt;a href=&quot;#单件模式&quot; class=&quot;headerlink&quot; title=&quot;单件模式&quot;&gt;&lt;/a&gt;单件模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;单件模式&lt;/strong&gt; 确保一个类只有一个实例，并提供一个全局访问点。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;单件模式&lt;/strong&gt; 确保一个类只有一个实例，并提供一个全局访问点。
     
     </summary>
     
