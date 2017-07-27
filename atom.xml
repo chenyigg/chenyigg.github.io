@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-27T08:22:57.070Z</updated>
+  <updated>2017-07-27T10:00:22.669Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/07/27/%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9B%B8%E5%A4%84/"/>
+    <id>http://yoursite.com/2017/07/27/与设计模式相处/</id>
+    <published>2017-07-27T10:00:50.976Z</published>
+    <updated>2017-07-27T10:00:22.669Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="与设计模式相处"><a href="#与设计模式相处" class="headerlink" title="与设计模式相处"></a>与设计模式相处</h1><blockquote>
+<p><strong>模式</strong> 是在某情景下，针对某问题的某种解决方案。</p>
+<p><strong>情景</strong> 就是应用某个模式的情况，这应该是会不断出现的情况。</p>
+<p><strong>问题</strong> 就是你想在某情景下达到的目标，但也可以是某情景下的约束。</p>
+<p><strong>解决方案</strong> 就是你所追求的：一个 <strong><em>通用</em></strong> 的设计，用来约束、达到目标。</p>
+</blockquote>
+<h4 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h4><h5 id="1-创建型"><a href="#1-创建型" class="headerlink" title="1. 创建型"></a>1. 创建型</h5><blockquote>
+<p><strong>创建型模式</strong> 涉及到将对象 <em>实例化</em> ，这类模式都提供一个方法，将客户从所需要实例化的对象中 <em>解耦</em> 。</p>
+<p>如：单件模式、工厂方法、抽象工厂</p>
+</blockquote>
+<h5 id="2-行为型"><a href="#2-行为型" class="headerlink" title="2. 行为型"></a>2. 行为型</h5><blockquote>
+<p>只要是 <strong>行为型模式</strong> ，都涉及到类与对象如何 <em>交互</em> 及 <em>分配职责</em> 。</p>
+<p>如：模板方法、迭代器、命令模式、观察者模式、状态模式、策略模式</p>
+</blockquote>
+<h5 id="3-结构型"><a href="#3-结构型" class="headerlink" title="3. 结构型"></a>3. 结构型</h5><blockquote>
+<p><strong>结构性模式</strong> 可以让你把类或对象 <em>组合</em> 到更大的结构中。</p>
+<p>如：装饰者模式、代理模式、外观模式、适配器模式、组合模式</p>
+</blockquote>
+<h4 id="运用设计模式"><a href="#运用设计模式" class="headerlink" title="运用设计模式"></a>运用设计模式</h4><p>​    不急切与使用模式，而是致力于最能解决问题的简单方案，考虑对象的原则，以及它们之间的折衷。</p>
+<ul>
+<li>用模式思考</li>
+<li>保持 <strong><em>简单</em></strong> </li>
+<li>设计模式并非并非万灵丹</li>
+<li>你知道何时需要模式 ……</li>
+<li><em>重构</em> 的时间就是模式的时间</li>
+<li>拿掉你所不需要的，不要害怕将一个设计模式从你的设计中删除</li>
+<li>如果你现在 <em>不需要</em> ，就别做</li>
+</ul>
+<h4 id="反模式"><a href="#反模式" class="headerlink" title="反模式"></a>反模式</h4><blockquote>
+<p><strong>反模式</strong> 告诉你如何采用一个不好的解决方案解决一个问题 。 </p>
+</blockquote>
+<ol>
+<li>反模式看起来总像是一个好的解决方案，但是当它真正被采用后，就会带来麻烦。</li>
+<li>通过将反模式归档，我们能够帮助其他人在实现它们之前，分辨出不好的解决方案。</li>
+<li>像模式一样，有许多类型的反模式，包括了开发反模式、OO反模式、组织反模式和领域特定反模式。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;与设计模式相处&quot;&gt;&lt;a href=&quot;#与设计模式相处&quot; class=&quot;headerlink&quot; title=&quot;与设计模式相处&quot;&gt;&lt;/a&gt;与设计模式相处&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;模式&lt;/strong&gt; 是在某情景下，针对某问题的某种解决
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title></title>
