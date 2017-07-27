@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-26T14:17:06.954Z</updated>
+  <updated>2017-07-27T08:22:57.070Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/07/27/%E5%A4%8D%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/07/27/复合模式/</id>
+    <published>2017-07-27T08:24:33.146Z</published>
+    <updated>2017-07-27T08:22:57.070Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="复合模式"><a href="#复合模式" class="headerlink" title="复合模式"></a>复合模式</h1><blockquote>
+<p>模式通常被一起使用，并被 <strong>组合</strong> 在同一个设计解决方案中。</p>
+<p><strong>复合模式</strong> 在一个解决方案中结合两个或多个模式，已解决 <em>一般或重复</em> 发生的问题。</p>
+</blockquote>
+<h3 id="mvc-模式"><a href="#MVC-模式" class="headerlink" title="MVC 模式"></a>MVC 模式</h3><blockquote>
+<p>MVC 是复合模式，结合观察者模式、策略模式和组合模式。</p>
+<ul>
+<li>模型使用观察者模式，以便观察者更新，同时保持两者之间解耦。</li>
+<li>控制器是视图的策略，视图可以使用不同的控制器实现，得到不同的行为。</li>
+<li>视图使用组合模式实现用户界面，用户界面通常组合了嵌套的组件，像面板、框架和按钮。</li>
+<li>适配器模式用来将新的模型适配成已有的视图和控制器。</li>
+</ul>
+</blockquote>
+<h4 id="mvc-模式分析"><a href="#MVC-模式分析" class="headerlink" title="MVC 模式分析"></a>MVC 模式分析</h4><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVC.jpg" alt=""></p>
+<h4 id="mvc-观察者模式分析"><a href="#MVC-——-观察者模式分析" class="headerlink" title="MVC —— 观察者模式分析"></a>MVC —— 观察者模式分析</h4><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVC_%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.jpg" alt=""></p>
+<h4 id="mvc-策略模式分析"><a href="#MVC-——-策略模式分析" class="headerlink" title="MVC —— 策略模式分析"></a>MVC —— 策略模式分析</h4><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVC_%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.jpg" alt=""></p>
+<h4 id="mvc-组合模式分析"><a href="#MVC-——-组合模式分析" class="headerlink" title="MVC —— 组合模式分析"></a>MVC —— 组合模式分析</h4><p><img src="file:///mnt/D/%E7%AC%94%E8%AE%B0/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/MVC_%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;复合模式&quot;&gt;&lt;a href=&quot;#复合模式&quot; class=&quot;headerlink&quot; title=&quot;复合模式&quot;&gt;&lt;/a&gt;复合模式&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;模式通常被一起使用，并被 &lt;strong&gt;组合&lt;/strong&gt; 在同一个设计解决方案中。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>设计模式 之 代理模式</title>
