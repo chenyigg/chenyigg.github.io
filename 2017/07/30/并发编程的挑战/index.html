@@ -33,7 +33,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="John Doe">
-    <meta name="description" itemprop="description" content="">
+    <meta name="description" itemprop="description" content="并发编程的挑战上下文切换
+​    CPU 通过时间片分配算法来 循环 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 保存 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。">
     <meta name="keywords" content="null">
 
     <!-- Site Verification -->
@@ -65,17 +66,19 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Hexo">
     <meta property="og:image" content="/img/favicon.png" />
-    <meta property="og:description" content="">
+    <meta property="og:description" content="并发编程的挑战上下文切换
+​    CPU 通过时间片分配算法来 循环 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 保存 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。">
     
 
     
-        <meta property="article:published_time" content="Sun Jul 30 2017 16:32:57 GMT+0800" />
-        <meta property="article:modified_time" content="Sun Jul 30 2017 16:31:15 GMT+0800" />
+        <meta property="article:published_time" content="Sun Jul 30 2017 16:41:54 GMT+0800" />
+        <meta property="article:modified_time" content="Sun Jul 30 2017 16:41:54 GMT+0800" />
     
 
     <!-- The Twitter Card protocol -->
     <meta name="twitter:title" content="Hexo">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="并发编程的挑战上下文切换
+​    CPU 通过时间片分配算法来 循环 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 保存 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://yoursite.com" />
@@ -110,9 +113,10 @@
     },
     "headline": "",
     "url": "http://yoursite.com/2017/07/30/并发编程的挑战/index.html",
-    "datePublished": "Sun Jul 30 2017 16:32:57 GMT+0800",
-    "dateModified": "Sun Jul 30 2017 16:31:15 GMT+0800",
-    "description": "",
+    "datePublished": "Sun Jul 30 2017 16:41:54 GMT+0800",
+    "dateModified": "Sun Jul 30 2017 16:41:54 GMT+0800",
+    "description": "并发编程的挑战上下文切换
+​    CPU 通过时间片分配算法来 循环 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 保存 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://yoursite.com"
@@ -482,7 +486,7 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h1 id="并发编程的挑战"><a href="#并发编程的挑战" class="headerlink" title="并发编程的挑战"></a>并发编程的挑战</h1><h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><blockquote>
-<p>​    CPU 通过时间片分配算法来 <em>循环</em> 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 <em>保存</em> 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。</p>
+<p>​    CPU 通过时间片分配算法来 <em>循环</em> 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 <em>保存</em> 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。<a id="more"></a> </p>
 </blockquote>
 <h5 id="减少上下文切换"><a href="#减少上下文切换" class="headerlink" title="减少上下文切换"></a>减少上下文切换</h5><p>​    减少上下文切换的方法有无锁并发编程、CAS 算法、使用最少线程和使用协程。</p>
 <ul>

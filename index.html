@@ -452,7 +452,8 @@
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            并发...
+            并发编程的挑战上下文切换
+​    CPU 通过时间片分配算法来 循环 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 保存 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。
         
         &nbsp;&nbsp;&nbsp;
         <span>

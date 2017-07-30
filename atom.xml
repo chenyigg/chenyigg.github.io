@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-30T08:31:15.200Z</updated>
+  <updated>2017-07-30T08:41:54.639Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,11 +19,11 @@
     <title></title>
     <link href="http://yoursite.com/2017/07/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E6%8C%91%E6%88%98/"/>
     <id>http://yoursite.com/2017/07/30/并发编程的挑战/</id>
-    <published>2017-07-30T08:32:57.468Z</published>
-    <updated>2017-07-30T08:31:15.200Z</updated>
+    <published>2017-07-30T08:41:54.639Z</published>
+    <updated>2017-07-30T08:41:54.639Z</updated>
     
     <content type="html"><![CDATA[<h1 id="并发编程的挑战"><a href="#并发编程的挑战" class="headerlink" title="并发编程的挑战"></a>并发编程的挑战</h1><h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><blockquote>
-<p>​    CPU 通过时间片分配算法来 <em>循环</em> 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 <em>保存</em> 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。</p>
+<p>​    CPU 通过时间片分配算法来 <em>循环</em> 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 <em>保存</em> 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。<a id="more"></a> </p>
 </blockquote>
 <h5 id="减少上下文切换"><a href="#减少上下文切换" class="headerlink" title="减少上下文切换"></a>减少上下文切换</h5><p>​    减少上下文切换的方法有无锁并发编程、CAS 算法、使用最少线程和使用协程。</p>
 <ul>
@@ -59,7 +59,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;并发编程的挑战&quot;&gt;&lt;a href=&quot;#并发编程的挑战&quot; class=&quot;headerlink&quot; title=&quot;并发编程的挑战&quot;&gt;&lt;/a&gt;并发编程的挑战&lt;/h1&gt;&lt;h3 id=&quot;上下文切换&quot;&gt;&lt;a href=&quot;#上下文切换&quot; class=&quot;headerlink&quot; ti
+      &lt;h1 id=&quot;并发编程的挑战&quot;&gt;&lt;a href=&quot;#并发编程的挑战&quot; class=&quot;headerlink&quot; title=&quot;并发编程的挑战&quot;&gt;&lt;/a&gt;并发编程的挑战&lt;/h1&gt;&lt;h3 id=&quot;上下文切换&quot;&gt;&lt;a href=&quot;#上下文切换&quot; class=&quot;headerlink&quot; title=&quot;上下文切换&quot;&gt;&lt;/a&gt;上下文切换&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;​    CPU 通过时间片分配算法来 &lt;em&gt;循环&lt;/em&gt; 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 &lt;em&gt;保存&lt;/em&gt; 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。
     
     </summary>
     
