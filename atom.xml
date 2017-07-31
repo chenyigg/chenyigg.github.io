@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-30T08:41:54.639Z</updated>
+  <updated>2017-07-31T15:13:55.246Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Java并发编程的艺术 —— 并发编程的挑战</title>
     <link href="http://yoursite.com/2017/07/30/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E6%8C%91%E6%88%98/"/>
     <id>http://yoursite.com/2017/07/30/并发编程的挑战/</id>
-    <published>2017-07-30T08:41:54.639Z</published>
-    <updated>2017-07-30T08:41:54.639Z</updated>
+    <published>2017-07-30T07:21:42.000Z</published>
+    <updated>2017-07-31T15:13:55.246Z</updated>
     
     <content type="html"><![CDATA[<h1 id="并发编程的挑战"><a href="#并发编程的挑战" class="headerlink" title="并发编程的挑战"></a>并发编程的挑战</h1><h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><blockquote>
 <p>​    CPU 通过时间片分配算法来 <em>循环</em> 执行任务，当前任务执行一个时间片后会切换到下一个任务。但是，在切换前会 <em>保存</em> 上一个任务的状态，以便下一次切换回这个任务时，可以再加载这个任务的状态。所以任务从保存到再加载的过程就是一次上下文切换。<a id="more"></a> </p>
@@ -123,11 +123,11 @@
   </entry>
   
   <entry>
-    <title></title>
+    <title>设计模式 之 复合模式（MVC）</title>
     <link href="http://yoursite.com/2017/07/27/%E5%A4%8D%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2017/07/27/复合模式/</id>
-    <published>2017-07-27T08:24:33.146Z</published>
-    <updated>2017-07-27T08:22:57.070Z</updated>
+    <published>2017-07-27T00:22:32.000Z</published>
+    <updated>2017-07-31T15:12:45.958Z</updated>
     
     <content type="html"><![CDATA[<h1 id="复合模式"><a href="#复合模式" class="headerlink" title="复合模式"></a>复合模式</h1><blockquote>
 <p>模式通常被一起使用，并被 <strong>组合</strong> 在同一个设计解决方案中。</p>
