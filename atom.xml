@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-06T15:42:14.725Z</updated>
+  <updated>2017-07-31T05:04:13.701Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/08/26/Java%20%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2017/08/26/Java 并发机制的底层实现原理/</id>
+    <published>2017-08-26T12:30:53.751Z</published>
+    <updated>2017-07-31T05:04:13.701Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="java-并发机制的底层实现原理"><a href="#Java-并发机制的底层实现原理" class="headerlink" title="Java 并发机制的底层实现原理"></a>Java 并发机制的底层实现原理</h1><h3 id="volatile-的引用"><a href="#volatile-的引用" class="headerlink" title="volatile 的引用"></a>volatile 的引用</h3><blockquote>
+<p>volatile 是轻量级的 synchronized ，它在 <em>多处理器</em> 开发中保证了共享变量的 “可见性” 。</p>
+<p>可见性的意思是当一个线程 <em>修改</em> 一个共享变量时，另一个线程能 <strong><em>读到</em></strong> 这个修改的值。</p>
+<p>volatile 变量修饰符 <strong>不会</strong> 引起线程上下文的切换和调度。</p>
+</blockquote>
+<h5 id="volatile-的定义与实现原理"><a href="#volatile-的定义与实现原理" class="headerlink" title="volatile 的定义与实现原理"></a>volatile 的定义与实现原理</h5><p>​    <strong>定义</strong> ：Java 编程语言允许线程访问共享变量，为了确保共享变量能被 <em>准确和一致</em> 地更新，线程应该确保通过排他锁单独获得这个变量。</p>
+<p>​    有 volatile 变量修饰的共享变量进行 <em>写操作</em> 的时候会多出 Lock 前缀指令的汇编代码。</p>
+<ul>
+<li>将当前处理器缓存行的数据写回到系统内存。</li>
+<li>这个写回系统内存的操作会使在其他 CPU 里缓存了该内存地址的数据无效。<ul>
+<li>在多处理器下，为了保证各个处理器缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置为无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存中。</li>
+</ul>
+</li>
+</ul>
+<h5 id="volatile-的使用优化"><a href="#volatile-的使用优化" class="headerlink" title="volatile 的使用优化"></a>volatile 的使用优化</h5><p>​    队列集合类 Linked-TransferQueue，它在使用 volatile 变量时，用一种 <strong>追加字节</strong> 的方式来优化队列出队和入队的性能。</p>
+<p>​    如果队列的头节点和尾节点都不足 64 字节的话，处理器会将它们都读到 <em>同一个高速缓存行</em> 中，在多处理器下每个处理器都会缓存同样的头、尾节点，当一个处理器试图修改头节点时，会将 <strong>整个</strong> 缓存行锁定，那么在缓存一致性的作用下，会导致其他处理器不能访问自己高速缓存行的尾节点。</p>
+<p>​    追加到 64 字节的方式来填满高速缓存区的缓存行，避免头节点和尾节点加载到同一个缓存行，使头节点和尾节点在修改时不会互相锁定。</p>
+<p>​    不应追加到 64 字节：</p>
+<ul>
+<li>缓存行非 64 字节宽的处理器。</li>
+<li>共享变量不会被 <em>频繁</em> 地 <strong>写</strong>。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;java-并发机制的底层实现原理&quot;&gt;&lt;a href=&quot;#Java-并发机制的底层实现原理&quot; class=&quot;headerlink&quot; title=&quot;Java 并发机制的底层实现原理&quot;&gt;&lt;/a&gt;Java 并发机制的底层实现原理&lt;/h1&gt;&lt;h3 id=&quot;volatile-
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Kotlin--习惯用法</title>
