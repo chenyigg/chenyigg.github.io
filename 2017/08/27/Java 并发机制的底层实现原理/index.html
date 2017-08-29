@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Java 并发机制的底层实现原理 · Hexo</title><meta name="description" content="Java 并发机制的底层实现原理 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/u/1038839880" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/chenyigg" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Java 并发机制的底层实现原理</h1><div class="post-info">Aug 27, 2017</div><div class="post-content"><h1 id="java-并发机制的底层实现原理"><a href="#Java-并发机制的底层实现原理" class="headerlink" title="Java 并发机制的底层实现原理"></a>Java 并发机制的底层实现原理</h1><h3 id="volatile-的引用"><a href="#volatile-的引用" class="headerlink" title="volatile 的引用"></a>volatile 的引用</h3><blockquote>
+<p>volatile 是轻量级的 synchronized ，它在 <em>多处理器</em> 开发中保证了共享变量的 “可见性” 。<a id="more"></a></p>
+<p>可见性的意思是当一个线程 <em>修改</em> 一个共享变量时，另一个线程能 <strong><em>读到</em></strong> 这个修改的值。</p>
+<p>volatile 变量修饰符 <strong>不会</strong> 引起线程上下文的切换和调度。</p>
+</blockquote>
+<h5 id="volatile-的定义与实现原理"><a href="#volatile-的定义与实现原理" class="headerlink" title="volatile 的定义与实现原理"></a>volatile 的定义与实现原理</h5><p>​    <strong>定义</strong> ：Java 编程语言允许线程访问共享变量，为了确保共享变量能被 <em>准确和一致</em> 地更新，线程应该确保通过排他锁单独获得这个变量。</p>
+<p>​    有 volatile 变量修饰的共享变量进行 <em>写操作</em> 的时候会多出 Lock 前缀指令的汇编代码。</p>
+<ul>
+<li>将当前处理器缓存行的数据写回到系统内存。</li>
+<li>这个写回系统内存的操作会使在其他 CPU 里缓存了该内存地址的数据无效。<ul>
+<li>在多处理器下，为了保证各个处理器缓存是一致的，就会实现缓存一致性协议，每个处理器通过嗅探在总线上传播的数据来检查自己缓存的值是不是过期了，当处理器发现自己缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置为无效状态，当处理器对这个数据进行修改操作的时候，会重新从系统内存中把数据读到处理器缓存中。</li>
+</ul>
+</li>
+</ul>
+<h5 id="volatile-的使用优化"><a href="#volatile-的使用优化" class="headerlink" title="volatile 的使用优化"></a>volatile 的使用优化</h5><p>​    队列集合类 Linked-TransferQueue，它在使用 volatile 变量时，用一种 <strong>追加字节</strong> 的方式来优化队列出队和入队的性能。</p>
+<p>​    如果队列的头节点和尾节点都不足 64 字节的话，处理器会将它们都读到 <em>同一个高速缓存行</em> 中，在多处理器下每个处理器都会缓存同样的头、尾节点，当一个处理器试图修改头节点时，会将 <strong>整个</strong> 缓存行锁定，那么在缓存一致性的作用下，会导致其他处理器不能访问自己高速缓存行的尾节点。</p>
+<p>​    追加到 64 字节的方式来填满高速缓存区的缓存行，避免头节点和尾节点加载到同一个缓存行，使头节点和尾节点在修改时不会互相锁定。</p>
+<p>​    不应追加到 64 字节：</p>
+<ul>
+<li>缓存行非 64 字节宽的处理器。</li>
+<li>共享变量不会被 <em>频繁</em> 地 <strong>写</strong>。</li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/08/06/kotlin（习惯用法）/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
