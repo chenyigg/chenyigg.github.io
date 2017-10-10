@@ -84,6 +84,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
 
@@ -105,7 +107,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Glide 初探开始要想使用 Glide ，首先需要将这个库引入到我们的项目当中。在 app/build.gradle 文件当中添加如下依赖： 123dependencies &amp;#123;    compile &apos;com.github.bumptech.glide:glide:3.7.0&apos;&amp;#125; 另外，Glide中需要用到网络功能，还得在AndroidManifest.xml中声明网络权限：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T15:26:13.479Z">
+<meta property="og:updated_time" content="2017-10-10T15:33:42.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glide 初探">
 <meta name="twitter:description" content="Glide 初探开始要想使用 Glide ，首先需要将这个库引入到我们的项目当中。在 app/build.gradle 文件当中添加如下依赖： 123dependencies &amp;#123;    compile &apos;com.github.bumptech.glide:glide:3.7.0&apos;&amp;#125; 另外，Glide中需要用到网络功能，还得在AndroidManifest.xml中声明网络权限：">
@@ -347,7 +349,7 @@
 <p>调用 Glide.with() 方法用于创建一个加载图片的实例。with() 方法可以接Context 、Activity 或者 Fragment 类型的参数。</p>
 <p>load()方法用于指定待加载的图片资源。Glide支持加载各种各样的图片资源，包括网络图片、本地图片、应用资源、二进制流、Uri对象等等。</p>
 <p>into()方法，我们希望让图片显示在哪个ImageView上，把这个ImageView的实例传进去就可以了。</p>
-<h3 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h3><p>占位图就是指在图片的加载过程中，我们先显示一张临时的图片，等图片加载出来了再替换成要加载的图片。</p>
+<h4 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h4><p>占位图就是指在图片的加载过程中，我们先显示一张临时的图片，等图片加载出来了再替换成要加载的图片。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Glide.with(<span class="keyword">this</span>)</div><div class="line">     .load(url)</div><div class="line">     .placeholder(R.drawable.loading)</div><div class="line">     .into(imageView);</div></pre></td></tr></table></figure>
 <p>异常占位图就是指，如果因为某些异常情况导致图片加载失败。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Glide.with(<span class="keyword">this</span>)</div><div class="line">     .load(url)</div><div class="line">     .placeholder(R.drawable.loading)</div><div class="line">     .error(R.drawable.error)</div><div class="line">     .diskCacheStrategy(DiskCacheStrategy.NONE)</div><div class="line">     .into(imageView);</div></pre></td></tr></table></figure>
@@ -529,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#glide-初探"><span class="nav-number">1.</span> <span class="nav-text">Glide 初探</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始"><span class="nav-number">1.0.1.</span> <span class="nav-text">开始</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#占位符"><span class="nav-number">1.1.</span> <span class="nav-text">占位符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指定图片格式"><span class="nav-number">1.1.1.</span> <span class="nav-text">指定图片格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定图片大小"><span class="nav-number">1.1.2.</span> <span class="nav-text">指定图片大小</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#glide-初探"><span class="nav-number">1.</span> <span class="nav-text">Glide 初探</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开始"><span class="nav-number">1.0.1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#占位符"><span class="nav-number">1.0.2.</span> <span class="nav-text">占位符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定图片格式"><span class="nav-number">1.0.3.</span> <span class="nav-text">指定图片格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定图片大小"><span class="nav-number">1.0.4.</span> <span class="nav-text">指定图片大小</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

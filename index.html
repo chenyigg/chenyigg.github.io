@@ -350,7 +350,7 @@
 <p>调用 Glide.with() 方法用于创建一个加载图片的实例。with() 方法可以接Context 、Activity 或者 Fragment 类型的参数。</p>
 <p>load()方法用于指定待加载的图片资源。Glide支持加载各种各样的图片资源，包括网络图片、本地图片、应用资源、二进制流、Uri对象等等。</p>
 <p>into()方法，我们希望让图片显示在哪个ImageView上，把这个ImageView的实例传进去就可以了。</p>
-<h3 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h3><p>占位图就是指在图片的加载过程中，我们先显示一张临时的图片，等图片加载出来了再替换成要加载的图片。</p>
+<h4 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h4><p>占位图就是指在图片的加载过程中，我们先显示一张临时的图片，等图片加载出来了再替换成要加载的图片。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Glide.with(<span class="keyword">this</span>)</div><div class="line">     .load(url)</div><div class="line">     .placeholder(R.drawable.loading)</div><div class="line">     .into(imageView);</div></pre></td></tr></table></figure>
 <p>异常占位图就是指，如果因为某些异常情况导致图片加载失败。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Glide.with(<span class="keyword">this</span>)</div><div class="line">     .load(url)</div><div class="line">     .placeholder(R.drawable.loading)</div><div class="line">     .error(R.drawable.error)</div><div class="line">     .diskCacheStrategy(DiskCacheStrategy.NONE)</div><div class="line">     .into(imageView);</div></pre></td></tr></table></figure>
