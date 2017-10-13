@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="框架,Glide," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Glide 源码解析 ——执行流程1. with()通过 with() 方法，得到一个 RequestManager 对象。 123456789public class Glide &amp;#123;    ...    // 重载方法，传入不同的 Context 对象    public static RequestManager with(Context context) &amp;#123;">
+<meta name="keywords" content="框架,Glide">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glide 执行流程">
+<meta property="og:url" content="http://yoursite.com/2017/10/13/Glide 源码解析 ——执行流程/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Glide 源码解析 ——执行流程1. with()通过 with() 方法，得到一个 RequestManager 对象。 123456789public class Glide &amp;#123;    ...    // 重载方法，传入不同的 Context 对象    public static RequestManager with(Context context) &amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-13T12:42:36.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glide 执行流程">
+<meta name="twitter:description" content="Glide 源码解析 ——执行流程1. with()通过 with() 方法，得到一个 RequestManager 对象。 123456789public class Glide &amp;#123;    ...    // 重载方法，传入不同的 Context 对象    public static RequestManager with(Context context) &amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/13/Glide 源码解析 ——执行流程/"/>
+
+
+
+
+
+  <title>Glide 执行流程 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/Glide 源码解析 ——执行流程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈奕(Yi Chen)">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Glide 执行流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T20:42:22+08:00">
+                2017-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="glide-源码解析-执行流程"><a href="#Glide-源码解析-——执行流程" class="headerlink" title="Glide 源码解析 ——执行流程"></a>Glide 源码解析 ——执行流程</h2><h4 id="1-with"><a href="#1-with" class="headerlink" title="1. with()"></a>1. with()</h4><p>通过 with() 方法，得到一个 RequestManager 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Glide</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">// 重载方法，传入不同的 Context 对象</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        RequestManagerRetriever retriever = RequestManagerRetriever.get();</div><div class="line">        <span class="comment">// retriever 是一个单例，通过 get() 得到 RequestManager </span></div><div class="line">        <span class="keyword">return</span> retriever.get(context);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果在 Glide.with() 方法中传入的是一个 Application 对象，那么这里就会调用带有 Context 参数的 get() 方法重载，因此 Glide 并不需要做什么特殊的处理，它自动就是和应用程序的生命周期是同步的。</p>
+<p>管你在 Glide.with() 方法中传入的是 Activity、FragmentActivity、v4 包下的 Fragment、还是 app 包下的 Fragment，最终的流程都是一样的，那就是会向当前的 Activity 当中添加一个隐藏的 Fragment。如果 Activity 被销毁了，Fragment 是可以监听到的，这样 Glide 就可以捕获这个事件并停止图片加载了。</p>
+<h4 id="2-load"><a href="#2-load" class="headerlink" title="2. load()"></a>2. load()</h4><p>Glide 是支持图片 URL 字符串、图片本地路径等等加载形式的，因此 RequestManager 中也有很多个 load() 方法的重载。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestManager</span> <span class="keyword">implements</span> <span class="title">LifecycleListener</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> DrawableTypeRequest&lt;String&gt; <span class="title">load</span><span class="params">(String string)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (DrawableTypeRequest&lt;String&gt;) fromString().load(string);</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> DrawableTypeRequest&lt;String&gt; <span class="title">fromString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> loadGeneric(String.class);</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>RequestManager 的 load() 方法中。刚才已经分析过了，fromString() 方法会返回一个 DrawableTypeRequest 对象，接下来会调用这个对象的 load() 方法，把图片的 URL 地址传进去。</p>
+<p>DrawableTypeRequest 的父类是 DrawableRequestBuilder， DrawableRequestBuilder 中有很多个方法，这些方法其实就是 Glide 绝大多数的 API 了。比如说 placeholder() 方法、error() 方法、diskCacheStrategy() 方法、override() 方法等。</p>
+<h3 id="3-into"><a href="#3-into" class="headerlink" title="3. into()"></a>3. into()</h3><p>into() 方法的具体逻辑都是在 DrawableRequestBuilder 的父类 GenericRequestBuilder 当中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Target&lt;TranscodeType&gt; <span class="title">into</span><span class="params">(ImageView view)</span> </span>&#123;</div><div class="line">    Util.assertMainThread();</div><div class="line">    <span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must pass in a non null View"</span>);</div><div class="line">    &#125;</div><div class="line">    ... <span class="comment">// transform 逻辑</span></div><div class="line">    <span class="keyword">return</span> into(glide.buildImageViewTarget(view, transcodeClass));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>into() 调用了 glide.buildImageViewTarget() 方法，根据传入的 class 参数来构建不同的 Target 对象。也就是说，通过 glide.buildImageViewTarget() 方法，我们构建出了一个 GlideDrawableImageViewTarget 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> &lt;Y extends Target&lt;TranscodeType&gt;&gt; <span class="function">Y <span class="title">into</span><span class="params">(Y target)</span> </span>&#123;</div><div class="line">    Util.assertMainThread();</div><div class="line">    <span class="keyword">if</span> (target == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must pass in a non null Target"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!isModelSet) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must first set a model (try #load())"</span>);</div><div class="line">    &#125;</div><div class="line">    Request previous = target.getRequest();</div><div class="line">    <span class="keyword">if</span> (previous != <span class="keyword">null</span>) &#123;</div><div class="line">        previous.clear();</div><div class="line">        requestTracker.removeRequest(previous);</div><div class="line">        previous.recycle();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 调用 buildRequest() 方法构建出了一个 Request 对象</span></div><div class="line">    Request request = buildRequest(target);</div><div class="line">    target.setRequest(request);</div><div class="line">    lifecycle.addListener(target);</div><div class="line">    <span class="comment">// 执行这个 Request</span></div><div class="line">    requestTracker.runRequest(request);</div><div class="line">    <span class="keyword">return</span> target;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Request 是用来发出加载图片请求的，它是 Glide 中非常关键的一个组件。 buildRequest() 将很多参数，像什么 placeholderId、errorPlaceholder、diskCacheStrategy 等等，组装到 Request 对象当中的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runRequest</span><span class="params">(Request request)</span> </span>&#123;</div><div class="line">    requests.add(request);</div><div class="line">    <span class="keyword">if</span> (!isPaused) &#123;</div><div class="line">        request.begin();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        pendingRequests.add(request);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>先判断 Glide 当前是不是处理暂停状态，如果不是暂停状态就调用 Request 的 begin() 方法来执行 Request，否则的话就先将 Request 添加到待执行队列里面，等暂停状态解除了之后再执行。执行需要看 GenericRequest 中的 begin() 方法了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">begin</span><span class="params">()</span> </span>&#123;</div><div class="line">    startTime = LogTime.getLogTime();</div><div class="line">    <span class="keyword">if</span> (model == <span class="keyword">null</span>) &#123;</div><div class="line">        onException(<span class="keyword">null</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    status = Status.WAITING_FOR_SIZE;</div><div class="line">    <span class="keyword">if</span> (Util.isValidDimensions(overrideWidth, overrideHeight)) &#123;</div><div class="line">        onSizeReady(overrideWidth, overrideHeight);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        target.getSize(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!isComplete() &amp;&amp; !isFailed() &amp;&amp; canNotifyStatusChanged()) &#123;</div><div class="line">        target.onLoadStarted(getPlaceholderDrawable());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"finished run method in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先如果 model 等于 null ，model 也就是我们在第二步 load() 方法中传入的图片 URL 地址，这个时候会调用 onException() 方法，它最终会调用到一个 setErrorPlaceholder() 。</p>
+<p>如果指定了的话，调用 onSizeReady() 方法。如果没指定的话，调用 target.getSize() 方法，对 ImageView 进行一系列的计算。不管是哪种情况，最终都会调用到 onSizeReady() 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSizeReady</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"Got onSizeReady in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (status != Status.WAITING_FOR_SIZE) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    status = Status.RUNNING;</div><div class="line">    width = Math.round(sizeMultiplier * width);</div><div class="line">    height = Math.round(sizeMultiplier * height);</div><div class="line">    ModelLoader&lt;A, T&gt; modelLoader = loadProvider.getModelLoader();</div><div class="line">    <span class="keyword">final</span> DataFetcher&lt;T&gt; dataFetcher = modelLoader.getResourceFetcher(model, width, height);</div><div class="line">    <span class="keyword">if</span> (dataFetcher == <span class="keyword">null</span>) &#123;</div><div class="line">        onException(<span class="keyword">new</span> Exception(<span class="string">"Failed to load model: \'"</span> + model + <span class="string">"\'"</span>));</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    ResourceTranscoder&lt;Z, R&gt; transcoder = loadProvider.getTranscoder();</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"finished setup for calling load in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">    loadedFromMemoryCache = <span class="keyword">true</span>;</div><div class="line">    loadStatus = engine.load(signature, width, height, dataFetcher, loadProvider, transformation, transcoder,</div><div class="line">            priority, isMemoryCacheable, diskCacheStrategy, <span class="keyword">this</span>);</div><div class="line">    loadedFromMemoryCache = resource != <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"finished onSizeReady in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DrawableTypeRequest 构建的出来的 GifBitmapWrapperDrawableTranscoder、ImageVideoModelLoader、ImageVideoGifDrawableLoadProvider 都封装起来的 FixedLoadProvider，就是 onSizeReady() 方法中的 loadProvider 了。</p>
+<p>将刚才获得的 ImageVideoFetcher、GifBitmapWrapperDrawableTranscoder 等等一系列的值一起传入到了 Engine 的 load() 方法当中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ublic &lt;T, Z, R&gt; <span class="function">LoadStatus <span class="title">load</span><span class="params">(...)</span> </span>&#123;</div><div class="line">  	... <span class="comment">// 处理内存缓存的逻辑</span></div><div class="line">    EngineRunnable runnable = <span class="keyword">new</span> EngineRunnable(engineJob, decodeJob, priority);</div><div class="line">    jobs.put(key, engineJob);</div><div class="line">    engineJob.addCallback(cb);</div><div class="line">  	engineJob.start(runnable);</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">      	logWithTimeAndKey(<span class="string">"Started new load"</span>, startTime, key);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> LoadStatus(cb, engineJob);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>EngineJob，它的主要作用就是用来开启线程的，为后面的异步加载图片做准备。DecodeJob ，从名字上来看，它好像是用来对图片进行解码的，但实际上它的任务十分繁重。</p>
+<p>接下来，就是让 EngineRunnable 的 run() 方法在子线程当中执行了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (isCancelled) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    Exception exception = <span class="keyword">null</span>;</div><div class="line">    Resource&lt;?&gt; resource = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        resource = decode();</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">            Log.v(TAG, <span class="string">"Exception decoding"</span>, e);</div><div class="line">        &#125;</div><div class="line">        exception = e;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isCancelled) &#123;</div><div class="line">        <span class="keyword">if</span> (resource != <span class="keyword">null</span>) &#123;</div><div class="line">            resource.recycle();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (resource == <span class="keyword">null</span>) &#123;</div><div class="line">        onLoadFailed(exception);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        onLoadComplete(resource);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里调用了一个 decode() 方法，并且这个方法返回了一个 Resource 对象。decode() 方法中又分了两种情况，从缓存当中去 decode 图片的话就会执行 decodeFromCache()，否则的话就执行 decodeFromSource()。</p>
+<p>这里又调用了DecodeJob的decodeFromSource()方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecodeJob</span>&lt;<span class="title">A</span>, <span class="title">T</span>, <span class="title">Z</span>&gt; </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> Resource&lt;Z&gt; <span class="title">decodeFromSource</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Resource&lt;T&gt; decoded = decodeSource();</div><div class="line">        <span class="keyword">return</span> transformEncodeAndTranscode(decoded);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> Resource&lt;T&gt; <span class="title">decodeSource</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Resource&lt;T&gt; decoded = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">long</span> startTime = LogTime.getLogTime();</div><div class="line">            <span class="keyword">final</span> A data = fetcher.loadData(priority);</div><div class="line">            <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">                logWithTimeAndKey(<span class="string">"Fetched data"</span>, startTime);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (isCancelled) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">            &#125;</div><div class="line">            decoded = decodeFromSourceData(data);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            fetcher.cleanup();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> decoded;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>它的工作分为两部，第一步是获得一个 Resource 对象，第二步是处理这个 Resource 对象。首先调用了（ fetcher 来源于前面的 modelloader ） fetcher.loadData() 方法。通过网络通讯的代码，得到一个 InputStream，并封装成一个 ImageVideoWrapper 对象。</p>
+<p>DecodeJob 的 decodeSource() 方法当中，在得到了这个 ImageVideoWrapper 对象之后，紧接着又将这个对象传入到了 decodeFromSourceData() 当中，来去解码这个对象。</p>
+<p>接下来，对得到的 ImageVideoWrapper 进行解码（Bitmap）：</p>
+<p>ImageVideoWrapper -&gt; InputStream -&gt; Bitmap -&gt; Resource<bitmap> -&gt; Resource<gifbitmapwrapper> -&gt;transformEncodeAndTranscode() -&gt; Bitmap  -&gt; Resource<glidedrawable></glidedrawable></gifbitmapwrapper></bitmap></p>
+<p>解码之后，调用的是 EngineJob 的 onResourceReady() 方法，使用Handler发出了一条 MSG_COMPLETE 消息，那么在 MainThreadCallback 的 handleMessage() 方法中就会收到这条消息。</p>
+<p>最后，通过 GenericRequest 、GlideDrawableImageViewTarget 的回调，将得到的 Bitmap 显示到 ImageView 中。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+            <a href="/tags/Glide/" rel="tag"># Glide</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/Glide 初探/" rel="next" title="Glide 初探">
+                <i class="fa fa-chevron-left"></i> Glide 初探
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="陈奕(Yi Chen)" />
+          <p class="site-author-name" itemprop="name">陈奕(Yi Chen)</p>
+           
+              <p class="site-description motion-element" itemprop="description">所以我就很开心啊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/ || archive">
+            
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#glide-源码解析-执行流程"><span class="nav-number">1.</span> <span class="nav-text">Glide 源码解析 ——执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-with"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. with()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-load"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. load()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-into"><span class="nav-number">1.1.</span> <span class="nav-text">3. into()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈奕(Yi Chen)</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

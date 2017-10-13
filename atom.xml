@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-10T15:33:42.063Z</updated>
+  <updated>2017-10-13T12:42:36.353Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Glide 执行流程</title>
+    <link href="http://yoursite.com/2017/10/13/Glide%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%20%E2%80%94%E2%80%94%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/"/>
+    <id>http://yoursite.com/2017/10/13/Glide 源码解析 ——执行流程/</id>
+    <published>2017-10-13T12:42:22.000Z</published>
+    <updated>2017-10-13T12:42:36.353Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="glide-源码解析-执行流程"><a href="#Glide-源码解析-——执行流程" class="headerlink" title="Glide 源码解析 ——执行流程"></a>Glide 源码解析 ——执行流程</h2><h4 id="1-with"><a href="#1-with" class="headerlink" title="1. with()"></a>1. with()</h4><p>通过 with() 方法，得到一个 RequestManager 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Glide</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">// 重载方法，传入不同的 Context 对象</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RequestManager <span class="title">with</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        RequestManagerRetriever retriever = RequestManagerRetriever.get();</div><div class="line">        <span class="comment">// retriever 是一个单例，通过 get() 得到 RequestManager </span></div><div class="line">        <span class="keyword">return</span> retriever.get(context);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果在 Glide.with() 方法中传入的是一个 Application 对象，那么这里就会调用带有 Context 参数的 get() 方法重载，因此 Glide 并不需要做什么特殊的处理，它自动就是和应用程序的生命周期是同步的。</p>
+<p>管你在 Glide.with() 方法中传入的是 Activity、FragmentActivity、v4 包下的 Fragment、还是 app 包下的 Fragment，最终的流程都是一样的，那就是会向当前的 Activity 当中添加一个隐藏的 Fragment。如果 Activity 被销毁了，Fragment 是可以监听到的，这样 Glide 就可以捕获这个事件并停止图片加载了。</p>
+<h4 id="2-load"><a href="#2-load" class="headerlink" title="2. load()"></a>2. load()</h4><p>Glide 是支持图片 URL 字符串、图片本地路径等等加载形式的，因此 RequestManager 中也有很多个 load() 方法的重载。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestManager</span> <span class="keyword">implements</span> <span class="title">LifecycleListener</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> DrawableTypeRequest&lt;String&gt; <span class="title">load</span><span class="params">(String string)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (DrawableTypeRequest&lt;String&gt;) fromString().load(string);</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> DrawableTypeRequest&lt;String&gt; <span class="title">fromString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> loadGeneric(String.class);</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>RequestManager 的 load() 方法中。刚才已经分析过了，fromString() 方法会返回一个 DrawableTypeRequest 对象，接下来会调用这个对象的 load() 方法，把图片的 URL 地址传进去。</p>
+<p>DrawableTypeRequest 的父类是 DrawableRequestBuilder， DrawableRequestBuilder 中有很多个方法，这些方法其实就是 Glide 绝大多数的 API 了。比如说 placeholder() 方法、error() 方法、diskCacheStrategy() 方法、override() 方法等。</p>
+<h3 id="3-into"><a href="#3-into" class="headerlink" title="3. into()"></a>3. into()</h3><p>into() 方法的具体逻辑都是在 DrawableRequestBuilder 的父类 GenericRequestBuilder 当中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Target&lt;TranscodeType&gt; <span class="title">into</span><span class="params">(ImageView view)</span> </span>&#123;</div><div class="line">    Util.assertMainThread();</div><div class="line">    <span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must pass in a non null View"</span>);</div><div class="line">    &#125;</div><div class="line">    ... <span class="comment">// transform 逻辑</span></div><div class="line">    <span class="keyword">return</span> into(glide.buildImageViewTarget(view, transcodeClass));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>into() 调用了 glide.buildImageViewTarget() 方法，根据传入的 class 参数来构建不同的 Target 对象。也就是说，通过 glide.buildImageViewTarget() 方法，我们构建出了一个 GlideDrawableImageViewTarget 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> &lt;Y extends Target&lt;TranscodeType&gt;&gt; <span class="function">Y <span class="title">into</span><span class="params">(Y target)</span> </span>&#123;</div><div class="line">    Util.assertMainThread();</div><div class="line">    <span class="keyword">if</span> (target == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must pass in a non null Target"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!isModelSet) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"You must first set a model (try #load())"</span>);</div><div class="line">    &#125;</div><div class="line">    Request previous = target.getRequest();</div><div class="line">    <span class="keyword">if</span> (previous != <span class="keyword">null</span>) &#123;</div><div class="line">        previous.clear();</div><div class="line">        requestTracker.removeRequest(previous);</div><div class="line">        previous.recycle();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 调用 buildRequest() 方法构建出了一个 Request 对象</span></div><div class="line">    Request request = buildRequest(target);</div><div class="line">    target.setRequest(request);</div><div class="line">    lifecycle.addListener(target);</div><div class="line">    <span class="comment">// 执行这个 Request</span></div><div class="line">    requestTracker.runRequest(request);</div><div class="line">    <span class="keyword">return</span> target;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Request 是用来发出加载图片请求的，它是 Glide 中非常关键的一个组件。 buildRequest() 将很多参数，像什么 placeholderId、errorPlaceholder、diskCacheStrategy 等等，组装到 Request 对象当中的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runRequest</span><span class="params">(Request request)</span> </span>&#123;</div><div class="line">    requests.add(request);</div><div class="line">    <span class="keyword">if</span> (!isPaused) &#123;</div><div class="line">        request.begin();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        pendingRequests.add(request);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>先判断 Glide 当前是不是处理暂停状态，如果不是暂停状态就调用 Request 的 begin() 方法来执行 Request，否则的话就先将 Request 添加到待执行队列里面，等暂停状态解除了之后再执行。执行需要看 GenericRequest 中的 begin() 方法了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">begin</span><span class="params">()</span> </span>&#123;</div><div class="line">    startTime = LogTime.getLogTime();</div><div class="line">    <span class="keyword">if</span> (model == <span class="keyword">null</span>) &#123;</div><div class="line">        onException(<span class="keyword">null</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    status = Status.WAITING_FOR_SIZE;</div><div class="line">    <span class="keyword">if</span> (Util.isValidDimensions(overrideWidth, overrideHeight)) &#123;</div><div class="line">        onSizeReady(overrideWidth, overrideHeight);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        target.getSize(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!isComplete() &amp;&amp; !isFailed() &amp;&amp; canNotifyStatusChanged()) &#123;</div><div class="line">        target.onLoadStarted(getPlaceholderDrawable());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"finished run method in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先如果 model 等于 null ，model 也就是我们在第二步 load() 方法中传入的图片 URL 地址，这个时候会调用 onException() 方法，它最终会调用到一个 setErrorPlaceholder() 。</p>
+<p>如果指定了的话，调用 onSizeReady() 方法。如果没指定的话，调用 target.getSize() 方法，对 ImageView 进行一系列的计算。不管是哪种情况，最终都会调用到 onSizeReady() 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSizeReady</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"Got onSizeReady in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (status != Status.WAITING_FOR_SIZE) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    status = Status.RUNNING;</div><div class="line">    width = Math.round(sizeMultiplier * width);</div><div class="line">    height = Math.round(sizeMultiplier * height);</div><div class="line">    ModelLoader&lt;A, T&gt; modelLoader = loadProvider.getModelLoader();</div><div class="line">    <span class="keyword">final</span> DataFetcher&lt;T&gt; dataFetcher = modelLoader.getResourceFetcher(model, width, height);</div><div class="line">    <span class="keyword">if</span> (dataFetcher == <span class="keyword">null</span>) &#123;</div><div class="line">        onException(<span class="keyword">new</span> Exception(<span class="string">"Failed to load model: \'"</span> + model + <span class="string">"\'"</span>));</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    ResourceTranscoder&lt;Z, R&gt; transcoder = loadProvider.getTranscoder();</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"finished setup for calling load in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">    loadedFromMemoryCache = <span class="keyword">true</span>;</div><div class="line">    loadStatus = engine.load(signature, width, height, dataFetcher, loadProvider, transformation, transcoder,</div><div class="line">            priority, isMemoryCacheable, diskCacheStrategy, <span class="keyword">this</span>);</div><div class="line">    loadedFromMemoryCache = resource != <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">        logV(<span class="string">"finished onSizeReady in "</span> + LogTime.getElapsedMillis(startTime));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DrawableTypeRequest 构建的出来的 GifBitmapWrapperDrawableTranscoder、ImageVideoModelLoader、ImageVideoGifDrawableLoadProvider 都封装起来的 FixedLoadProvider，就是 onSizeReady() 方法中的 loadProvider 了。</p>
+<p>将刚才获得的 ImageVideoFetcher、GifBitmapWrapperDrawableTranscoder 等等一系列的值一起传入到了 Engine 的 load() 方法当中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ublic &lt;T, Z, R&gt; <span class="function">LoadStatus <span class="title">load</span><span class="params">(...)</span> </span>&#123;</div><div class="line">  	... <span class="comment">// 处理内存缓存的逻辑</span></div><div class="line">    EngineRunnable runnable = <span class="keyword">new</span> EngineRunnable(engineJob, decodeJob, priority);</div><div class="line">    jobs.put(key, engineJob);</div><div class="line">    engineJob.addCallback(cb);</div><div class="line">  	engineJob.start(runnable);</div><div class="line">    <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">      	logWithTimeAndKey(<span class="string">"Started new load"</span>, startTime, key);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> LoadStatus(cb, engineJob);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>EngineJob，它的主要作用就是用来开启线程的，为后面的异步加载图片做准备。DecodeJob ，从名字上来看，它好像是用来对图片进行解码的，但实际上它的任务十分繁重。</p>
+<p>接下来，就是让 EngineRunnable 的 run() 方法在子线程当中执行了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (isCancelled) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    Exception exception = <span class="keyword">null</span>;</div><div class="line">    Resource&lt;?&gt; resource = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        resource = decode();</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">            Log.v(TAG, <span class="string">"Exception decoding"</span>, e);</div><div class="line">        &#125;</div><div class="line">        exception = e;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isCancelled) &#123;</div><div class="line">        <span class="keyword">if</span> (resource != <span class="keyword">null</span>) &#123;</div><div class="line">            resource.recycle();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (resource == <span class="keyword">null</span>) &#123;</div><div class="line">        onLoadFailed(exception);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        onLoadComplete(resource);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里调用了一个 decode() 方法，并且这个方法返回了一个 Resource 对象。decode() 方法中又分了两种情况，从缓存当中去 decode 图片的话就会执行 decodeFromCache()，否则的话就执行 decodeFromSource()。</p>
+<p>这里又调用了DecodeJob的decodeFromSource()方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecodeJob</span>&lt;<span class="title">A</span>, <span class="title">T</span>, <span class="title">Z</span>&gt; </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> Resource&lt;Z&gt; <span class="title">decodeFromSource</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Resource&lt;T&gt; decoded = decodeSource();</div><div class="line">        <span class="keyword">return</span> transformEncodeAndTranscode(decoded);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> Resource&lt;T&gt; <span class="title">decodeSource</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Resource&lt;T&gt; decoded = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">long</span> startTime = LogTime.getLogTime();</div><div class="line">            <span class="keyword">final</span> A data = fetcher.loadData(priority);</div><div class="line">            <span class="keyword">if</span> (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</div><div class="line">                logWithTimeAndKey(<span class="string">"Fetched data"</span>, startTime);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (isCancelled) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">            &#125;</div><div class="line">            decoded = decodeFromSourceData(data);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            fetcher.cleanup();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> decoded;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>它的工作分为两部，第一步是获得一个 Resource 对象，第二步是处理这个 Resource 对象。首先调用了（ fetcher 来源于前面的 modelloader ） fetcher.loadData() 方法。通过网络通讯的代码，得到一个 InputStream，并封装成一个 ImageVideoWrapper 对象。</p>
+<p>DecodeJob 的 decodeSource() 方法当中，在得到了这个 ImageVideoWrapper 对象之后，紧接着又将这个对象传入到了 decodeFromSourceData() 当中，来去解码这个对象。</p>
+<p>接下来，对得到的 ImageVideoWrapper 进行解码（Bitmap）：</p>
+<p>ImageVideoWrapper -&gt; InputStream -&gt; Bitmap -&gt; Resource<bitmap> -&gt; Resource<gifbitmapwrapper> -&gt;transformEncodeAndTranscode() -&gt; Bitmap  -&gt; Resource<glidedrawable></glidedrawable></gifbitmapwrapper></bitmap></p>
+<p>解码之后，调用的是 EngineJob 的 onResourceReady() 方法，使用Handler发出了一条 MSG_COMPLETE 消息，那么在 MainThreadCallback 的 handleMessage() 方法中就会收到这条消息。</p>
+<p>最后，通过 GenericRequest 、GlideDrawableImageViewTarget 的回调，将得到的 Bitmap 显示到 ImageView 中。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;glide-源码解析-执行流程&quot;&gt;&lt;a href=&quot;#Glide-源码解析-——执行流程&quot; class=&quot;headerlink&quot; title=&quot;Glide 源码解析 ——执行流程&quot;&gt;&lt;/a&gt;Glide 源码解析 ——执行流程&lt;/h2&gt;&lt;h4 id=&quot;1-with&quot;
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="http://yoursite.com/tags/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="Glide" scheme="http://yoursite.com/tags/Glide/"/>
+    
+  </entry>
   
   <entry>
     <title>Glide 初探</title>
@@ -993,156 +1049,6 @@
     
     
       <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Gradle 学习笔记</title>
-    <link href="http://yoursite.com/2017/07/22/Gradle-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2017/07/22/Gradle-学习笔记/</id>
-    <published>2017-07-22T13:40:27.000Z</published>
-    <updated>2017-08-31T15:02:54.493Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h2><blockquote>
-<p>良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。 <a id="more"></a> 例如库项目中的统一资源前缀、统一的 arr 引用、 Mainifest 中统一的 Style 配置等，这些在 Gradle 进行编译的过程中是非常容易出错的。</p>
-</blockquote>
-<p>[TOC]</p>
-<h4 id="gradle-初探"><a href="#Gradle-初探" class="headerlink" title="Gradle 初探"></a>Gradle 初探</h4><p><strong>1. 项目全局 build.gradle</strong></p>
-<p><strong>2. Module build.gradle</strong></p>
-<ul>
-<li>apply plugin 领域</li>
-<li>android 领域</li>
-<li>dependencies 领域</li>
-<li>Android Gradle DSL 的<a href="http://google.github.io/android-gradle-dsl/current/index.html" target="_blank" rel="external">文档</a></li>
-</ul>
-<p><strong>3. local.properties</strong></p>
-<p>IDE 通过 Android_Home 环境变量自动生成配置文件。</p>
-<p><strong>4. Gradle Task</strong></p>
-<p>通过多个 Gradle Tesk 相互调用，编译 Android 工程。</p>
-<h4 id="gradle-进阶"><a href="#Gradle-进阶" class="headerlink" title="Gradle 进阶"></a>Gradle 进阶</h4><p><strong>1. 更改项目结构</strong></p>
-<p>​    将 Eclipse 项目结构修改，并导入到 Android Studio 中。</p>
-<p>​    Android 项目的项目结构要在 Android 领域中进行配置，如下所示：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sourceSets &#123;</div><div class="line">  	main &#123;</div><div class="line">      	java.srcDris = [<span class="string">'src'</span>]</div><div class="line">      	res.srcDris = [<span class="string">'res'</span>]</div><div class="line">      	asset.srcDris = [<span class="string">'assets'</span>]</div><div class="line">      	jni.srcDris = [<span class="string">'jni'</span>]</div><div class="line">      	jniLibs.srcDris = [<span class="string">'libs'</span>]</div><div class="line">      	mainifest.srcFile <span class="string">'AndroidMainifest.xml'</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>2. 构建全局配置</strong></p>
-<p>​    在项目全局 build.gradle 中，通过 ext 领域指定全局的配置信息。</p>
-<p>​    通过 rootProject.ext 引用所有的全局参数。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">  	compileSdkVersion = <span class="number">23</span></div><div class="line">  	buildToolsVersion = <span class="string">"23.0.2"</span></div><div class="line">  	minSdkVersion = <span class="number">14</span></div><div class="line">  	targetSdkVersion = <span class="number">23</span></div><div class="line">  	versionCode = <span class="number">3</span></div><div class="line">  	versionName = <span class="string">"1.0.1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>3. 构建 defaultConfig</strong></p>
-<p>​    在 Gradle 脚本中写代码，以便动态控制编译过程。</p>
-<p><strong>4. 构建 buildTypes</strong></p>
-<p>​    通过创建不同的构建类型，从而生成不同类型的 apk 。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">buildTypes &#123;</div><div class="line">  	release &#123;</div><div class="line">      	minifyEnabled <span class="literal">false</span></div><div class="line">      	proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​    构建类型 buildTypes 的继承</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">xys.initWith(buildTypes.debug)</div><div class="line">xys &#123;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>5. 构建 signingConfigs</strong></p>
-<p><strong>6. 生成签名</strong></p>
-<p>​    Build -&gt; Generate Signed APK 选择 module，点击 Next，选择 “Create new …” ，填写必要的信息</p>
-<p>​    签名配置</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">  	xys &#123;</div><div class="line">      	storeFile file(<span class="string">"xys_key.jks"</span>)</div><div class="line">      	storePassWord <span class="string">"1234567"</span></div><div class="line">      	keyAlias <span class="string">"xys"</span></div><div class="line">      	keyPassword <span class="string">"1234567"</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>7. Android 领域中的可选配置</strong></p>
-<ul>
-<li>compileOptions：配置编译的选项（Java 的编译版本）</li>
-<li>lintOptions：控制 Lint 代码检查。在 Lint Check 的时候，编译会因为 Lint的 error 而终止。</li>
-</ul>
-<p><strong>8. 构建 Proguard</strong></p>
-<p>​    Proguard 配置是Android 的 apk 混淆文件配置，它同样可以精简代码、资源，优化代码结构。</p>
-<p><strong>9. Gradle 动态参数配置</strong></p>
-<p><strong>10. System.properties 方式</strong></p>
-<p>​    打开 gradle.properties 文件，将配置参数配置到该文件中，然后通过 System.properties[KEY] 获取参数。</p>
-<p><strong>11. 多渠道打包</strong></p>
-<p>​    创建渠道占位符：在 AndroidMainifest 文件的 Application 节点下，创建 meta-data 节点。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">	<span class="attr">android:name</span>=<span class="string">"PRODUCT"</span></div><div class="line">	<span class="attr">android:value</span>=<span class="string">"$&#123;CHANNEL_VALUE&#125;"</span> /&gt;</div></pre></td></tr></table></figure>
-<p>​    配置 Gradle 脚本</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">productFlavors &#123;</div><div class="line">  	product1 &#123;&#125;</div><div class="line">  	product2 &#123;&#125;</div><div class="line">  	product3 &#123;&#125;</div><div class="line">&#125;</div><div class="line">productFlavors.all &#123; flavor -&gt;</div><div class="line">  	flavor.manifestPlaceholders = [<span class="string">CHANNEL_VALUE:</span>name]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>12. 生成重命名包</strong></p>
-<p><strong>13. 为不同版本添加不同代码</strong></p>
-<p>​    在开发中，不同版本通常有不同的代码功能。一般会有一个全局的变量开关，根据不同的版本设置不同的值。</p>
-<h4 id="gradle-多项目依赖"><a href="#Gradle-多项目依赖" class="headerlink" title="Gradle 多项目依赖"></a>Gradle 多项目依赖</h4><blockquote>
-<p>​    Android通过提供了一个新的依赖 —— <em>aar</em> 。通过 <em>aar</em> 方式进行项目依赖，主项目可以像使用 jar 包一样使用这个库项目。</p>
-</blockquote>
-<p><strong>1. jar 包依赖</strong></p>
-<p>​    在每一个 module 的根目录下都有一个 libs 文件夹，开发者可以把 jar 包拷贝到该目录下，并单击鼠标右键在菜单中选择 “add as library” 进行引用（或者直接 Sync 项目也可以实现引用）。</p>
-<p>​    使用 Gradle 编译成 jar 包</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">task makeJar(<span class="string">type:</span> Jar) &#123;</div><div class="line">  	<span class="comment">// 清空已经存在的 jar 包</span></div><div class="line">  	delete <span class="string">'libs/sdk.jar'</span></div><div class="line">  	<span class="comment">// 指定生成的 jar 包名</span></div><div class="line">  	baseName <span class="string">'sdk'</span></div><div class="line">  	<span class="comment">// 从 class 文件生成 jar 包</span></div><div class="line">  	from(<span class="string">'build/intermediates/classes/debug/com/xys'</span>)</div><div class="line">  	<span class="comment">// 打包进 jar 包后的文件目录结构</span></div><div class="line">  	into(<span class="string">'com/xys/'</span>)</div><div class="line">  	<span class="comment">// 去掉不需要打包的目录和文件</span></div><div class="line">  	exclude(<span class="string">'test/'</span>,<span class="string">'BuildConfig.class'</span>,<span class="string">'R.class'</span>)</div><div class="line">  	<span class="comment">// 去掉 R 文件</span></div><div class="line">  	exclude &#123;it.name.startsWith(<span class="string">'R$S'</span>);&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>2. 本地库项目依赖</strong></p>
-<p>​    Android Studio 提供库项目的依赖方法。</p>
-<p>​    创建 module：File -&gt; New -&gt; New Module ，在弹出的界面中选择 Android Library 。</p>
-<p><strong>3. 远程仓库依赖</strong></p>
-<p>​    Gradle 支持以 aar 的形式依赖远程服务器上的库项目。如：引用 Maven 中央库</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.jckewharton.scalpel.scalpel:scalpel:1.1.2'</span></div></pre></td></tr></table></figure>
-<p><strong>4. 本地 aar 依赖</strong></p>
-<p>​    对于本地项目来说，既可以使用 module 的方式进行依赖，也可以和从远程仓库中拉取下来的 aar 一样，使用本地的 aar 进行依赖。</p>
-<h4 id="gradle-依赖管理"><a href="#Gradle-依赖管理" class="headerlink" title="Gradle 依赖管理"></a>Gradle 依赖管理</h4><blockquote>
-<p>​    依赖可的管理工作问题，特别是一个依赖的库项目同时还依赖了另一个库项目，如果某个库项目发生改变，而且与以前版本不兼容，就会导致依赖库发生问题</p>
-</blockquote>
-<p><strong>1. Gradle 依赖库缓存</strong></p>
-<p>​    Gradle 拉取的 aar 库保存在本地的 ~/.gradle 文件夹和 ~/.m2 文件夹中。</p>
-<p><strong>2. 利用 Gradle 的通知机制</strong></p>
-<p>​    当项目有版本库更新之后，Gradle 会给出一种通知机制，即利用 Gradle 的检查周期进行 <em>check</em> 。</p>
-<p><strong>3. 利用 Gradle 的依赖检查</strong></p>
-<p><strong>4. Gradle 依赖传递</strong></p>
-<p>​    当主项目 A 依赖库项目 B ，库项目 B 依赖库项目 C 和 jar 包 D 。</p>
-<p>​    B项目及其依赖的所有项目，即 C 和 D ：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT’</div></pre></td></tr></table></figure>
-<p>​    引用 B 项目，但不进行依赖传递，即不依赖库项目 C ：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile ‘com.xxx.xxxxx.xxxxxx<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>-SNAPSHOT <span class="meta">@aar</span>’</div></pre></td></tr></table></figure>
-<p>​    排除一个库引用的其他库：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">compile (‘com.xxx.yyy.aaa<span class="number">.1</span><span class="number">.0</span><span class="number">.0</span>’) &#123;</div><div class="line">  	exclude <span class="string">module:</span> <span class="string">'com.xxx.yyy.bbb:1.1.2'</span></div><div class="line">  	exclude <span class="string">module:</span> <span class="string">'com.xxx.yyy.ccc:1.1.3'</span></div><div class="line">&#125;</div><div class="line">compile <span class="string">'com.xxx.yyy.bbb:1.1.2'</span></div><div class="line">compile <span class="string">'com.xxx.yyy.ccc:1.1.2'</span></div></pre></td></tr></table></figure>
-<p><strong>5. Gradle 依赖统一管理</strong></p>
-<p>​    将全局参数抽取出来，写到一个单独的配置文件中，如：config.gradle 文件</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">  	android = [<span class="string">compileSdkVersion:</span><span class="number">23</span>,</div><div class="line"><span class="symbol">  			   buildToolsVersion:</span> <span class="string">'23,0,2'</span>]</div><div class="line">  	dependencies = [<span class="string">supportv7:</span> <span class="string">'com.android.support:appcompat-v7:23.2.0'</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="gradle-使用技巧"><a href="#Gradle-使用技巧" class="headerlink" title="Gradle 使用技巧"></a>Gradle 使用技巧</h4><p><strong>1. 生成 Gradle 编译脚本</strong></p>
-<p>​    只要在目录下执行 gradle init wrapper 指令就可以生成这些必须的脚本文件，在在这些默认的脚本上进行修改就容易多了 。</p>
-<p><strong>2. Gradle peer not authenticated</strong></p>
-<p>​    更新 Gradle 的依赖包时，发生 peer not authenticated 的异常，导致 Gradle 无法编译。</p>
-<p>​    使用 VPN 进行网络访问，或者修改 jcenter 库的地址：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jcenter &#123;</div><div class="line">  	url <span class="string">"http://jcenter.bintray.com/"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>3. Gradle 性能检测</strong></p>
-<p>​    Gradle 编译工具本身就内置了一个性能分析工具 —— profile 。执行一下脚本：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gradle build -profile</div></pre></td></tr></table></figure>
-<p>​    在根目录的 Build 目录下就会生成一个 profile 文件，通过分析该 profile 文件，适当关掉一些不必要的 Task 可提高 Gradle 编译速度。</p>
-<p><strong>4. Gradle 加速</strong></p>
-<p>​    Gradle 在编译时会执行大量的 Task ，同时生成很多文件。因此磁盘 IO 会造成编译速度缓慢。最好的办法是：更换固态（增加磁盘 IO 速度）、尽量减少本地库项目的依赖，多使用 <strong>aar</strong> 进行依赖。</p>
-<p>​    在 gradle.properties 中添加一下代码，开启 Gradle 的多线程和多核心支持。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">org.gradle.daemon=<span class="literal">true</span></div><div class="line">org.gradle.parallel=<span class="literal">true</span></div><div class="line">org.gradle.configureondemand=<span class="literal">true</span></div></pre></td></tr></table></figure>
-<p>​    在 build.gradle 中开启 Gradle 的增量编译。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dexOptions &#123;</div><div class="line">incremental <span class="literal">true</span></div><div class="line">	javaMaxHeapSize <span class="string">"4g"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>5. 增加编译内存</strong></p>
-<p>​    当遇到编译时内存溢出时，则需要对默认的内存设置进行调整，即在 gradle.properties 文件中增加内存配置。</p>
-<p><strong>6. Gradle 调用终端指令</strong></p>
-<p>​    例如，新建一个 Task，</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">task testcmd &#123;</div><div class="line">  	println <span class="string">'git log --pretty=oneline -1'</span>.execute([], project.rootDir).text</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>7. 使用 Gradle 精简资源</strong></p>
-<p>​    <strong>minifyEnabled</strong> 指令不仅可以对代码进行混淆，还可以对代码进行<em>优化、精简</em>。同时配合 <strong>shrinkResources</strong> 指令，还可以<em>清除</em>项目工程文件中无效的资源文件，进一步精简 APK 文件。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  	......</div><div class="line">  	buildTypes &#123;</div><div class="line">      	minifyEnabled <span class="literal">true</span></div><div class="line">      	shrinkResources <span class="literal">true</span></div><div class="line">      	proguardFiles getDefaultProguandfile(<span class="string">'proguard-android.txt'</span>),<span class="string">'proguard-rule.pro'</span></div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>8. 清除 Gradle 缓存</strong></p>
-<p>​    使用 gradle clean 指令清理 Gradle 缓存；还有 gradle –refresh-dependencies 指令重新刷新全部的依赖库，获取新的版本库。</p>
-<p><strong>9. 使用 Gradle 本地缓存</strong></p>
-<p>​    在 Setting - Build - Build Tools - Gradle 标签中，选择 Offline work 并指定默认的 .gradle 文件夹。</p>
-<p><strong>10. Gradle 版本问题导致的编译错误</strong></p>
-<p>​    例如 Gradle Version 导致的问题是由于 gradle wrapper 导致的。解决这个问题：Setting -&gt; Build - Build Tools - Gradle -&gt; Project - Level setting，勾选 Use default gradle wrapper (recommended)。</p>
-<p>​    一般来说，应该在本地配置稳定的 Gradle 版本，即勾选 Use local gradle distribution 选项，填写本地的 Gradle 路径（需要配置好 Gradle Shell 的环境变量）。新版的 Android Studio 中，已经自带 Gradle 了，可以直接链接到 Android Studio 中的 Gradle。</p>
-<p><strong>11. Gradle 资源冲突</strong></p>
-<p>​    Gradle 采用的是合并的方式进行编译，所有的文件、代码都会被 <strong><em>Merge</em></strong> 到一起，相同的资源名就会发生冲突。因此，需要对<em>代码规范</em>进行调整，对于资源、文件名来说，尽量使用 module 前缀来进行区分，jar 包、aar库的版本一定要进行统一管理。</p>
-<h4 id="gradle-自定义插件"><a href="#Gradle-自定义插件" class="headerlink" title="Gradle 自定义插件"></a>Gradle 自定义插件</h4><blockquote>
-<p>在 Gradle 中创建<strong><em>自定义</em></strong>插件，Gradle 提供了一下三种方式。</p>
-<ul>
-<li>在 build.gradle 脚本中直接使用。</li>
-<li>在 buildSrc 中使用。</li>
-<li>在独立 Module 中使用。</li>
-</ul>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Gradle&quot;&gt;&lt;a href=&quot;#Gradle&quot; class=&quot;headerlink&quot; title=&quot;Gradle&quot;&gt;&lt;/a&gt;Gradle&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;良好的编码习惯和风格，对于减少不必要的 Gradle 问题是很有帮助的。
-    
-    </summary>
-    
-    
-      <category term="Gradle" scheme="http://yoursite.com/tags/Gradle/"/>
     
   </entry>
   
