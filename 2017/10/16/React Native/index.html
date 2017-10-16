@@ -79,10 +79,12 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
@@ -97,20 +99,17 @@
 
 
 
-<meta name="description" content="模板方法模式 模板方法模式 在一个方法中定义一个算法的 骨架 ，而将一些步骤 延迟 到子类中。">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="React Native状态机 通过绑定状态机变量，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的组件将重新渲染。——观察者模式 设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Na">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 之 模板方法模式">
-<meta property="og:url" content="http://yoursite.com/2017/07/25/模板方法模式/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2017/10/16/React Native/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="模板方法模式 模板方法模式 在一个方法中定义一个算法的 骨架 ，而将一些步骤 延迟 到子类中。">
+<meta property="og:description" content="React Native状态机 通过绑定状态机变量，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的组件将重新渲染。——观察者模式 设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Na">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ovfw8ru3e.bkt.clouddn.com/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95.png">
-<meta property="og:updated_time" content="2017-08-31T15:06:37.416Z">
+<meta property="og:updated_time" content="2017-10-16T14:39:43.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 之 模板方法模式">
-<meta name="twitter:description" content="模板方法模式 模板方法模式 在一个方法中定义一个算法的 骨架 ，而将一些步骤 延迟 到子类中。">
-<meta name="twitter:image" content="http://ovfw8ru3e.bkt.clouddn.com/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95.png">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="React Native状态机 通过绑定状态机变量，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的组件将重新渲染。——观察者模式 设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Na">
 
 
 
@@ -140,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/25/模板方法模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/16/React Native/"/>
 
 
 
 
 
-  <title>设计模式 之 模板方法模式 | Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -273,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/25/模板方法模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/React Native/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈奕(Yi Chen)">
@@ -290,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式 之 模板方法模式</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -302,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T15:18:03+08:00">
-                2017-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-16T22:40:16+08:00">
+                2017-10-16
               </time>
             
 
@@ -340,15 +339,10 @@
       
 
       
-        <h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><blockquote>
-<p><strong>模板方法模式</strong> 在一个方法中定义一个算法的 <strong>骨架</strong> ，而将一些步骤 <strong>延迟</strong> 到子类中。<a id="more"></a>模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。</p>
-<p>​    这个方法将算法定义成 <em>一组步骤</em>，其中的任何步骤都可以是抽象的，由子类 <em>负责实现</em> 。这可以确保算法结构保持不变，同时由子类提供部分实现。</p>
-<p>​    工厂方法是模板方法的一个特殊版本。</p>
-</blockquote>
-<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://ovfw8ru3e.bkt.clouddn.com/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95.png" alt=""></p>
-<h3 id="对模板方法进行挂钩"><a href="#对模板方法进行挂钩" class="headerlink" title="对模板方法进行挂钩"></a>对模板方法进行挂钩</h3><p>​    钩子是一种被声明在抽象类中的 <em>方法</em> ，但只有 <em>空的</em> 或者 <em>默认</em> 的实现。钩子的存在，可以让子类有能力对算法的不同点进行挂钩。要不要挂钩，由子类 <em>自行决定</em> 。</p>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-好莱坞原则别调用打电话给我们我们会调用打电话给你"><a href="#1-好莱坞原则：别调用（打电话给）我们，我们会调用（打电话给）你。" class="headerlink" title="1. 好莱坞原则：别调用（打电话给）我们，我们会调用（打电话给）你。"></a>1. 好莱坞原则：别调用（打电话给）我们，我们会调用（打电话给）你。</h4><p>​    好莱坞原则可以给我们一种防止 “依赖腐败” 的方法。当高层组件依赖低层组件，而低层组件又依赖高层组件，而高层组件又依赖边侧组件，而边侧组件又依赖低层组件时，依赖腐败就发生了。</p>
-<p>​    我们允许低层组件将自己挂钩到系统上，但是高层组件会 <strong>决定</strong> 什么时候和怎样使用这些低层组件。换句话说，高层组件对待低层组件的方式是 “别调用我们，我们会调用你” 。</p>
+        <h3 id="react-native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><ul>
+<li>通过绑定<strong>状态机变量</strong>，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的<strong>组件</strong>将重新渲染。——观察者模式</li>
+<li>设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Native 组件封装了 UI 的交互逻辑，而无状态的 React Native 组件负责渲染 UI 界面。</li>
+</ul>
 
       
     </div>
@@ -364,12 +358,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
-          
-        </div>
-      
 
       
       
@@ -379,8 +367,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/25/适配器模式与外观模式/" rel="next" title="设计模式 之 适配器模式与外观模式">
-                <i class="fa fa-chevron-left"></i> 设计模式 之 适配器模式与外观模式
+              <a href="/2017/10/13/Glide 源码解析 ——执行流程/" rel="next" title="Glide 执行流程">
+                <i class="fa fa-chevron-left"></i> Glide 执行流程
               </a>
             
           </div>
@@ -388,10 +376,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/25/迭代器与组合模式/" rel="prev" title="设计模式 之 迭代器与组合模式">
-                设计模式 之 迭代器与组合模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,7 +509,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板方法模式"><span class="nav-number">1.</span> <span class="nav-text">模板方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">1.0.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对模板方法进行挂钩"><span class="nav-number">1.0.2.</span> <span class="nav-text">对模板方法进行挂钩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">1.0.3.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-好莱坞原则别调用打电话给我们我们会调用打电话给你"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1. 好莱坞原则：别调用（打电话给）我们，我们会调用（打电话给）你。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-native"><span class="nav-number">1.</span> <span class="nav-text">React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态机"><span class="nav-number">1.1.</span> <span class="nav-text">状态机</span></a></li></ol></li></ol></div>
             
 
           </div>
