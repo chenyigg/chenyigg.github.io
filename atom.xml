@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-17T14:51:34.053Z</updated>
+  <updated>2017-10-17T16:08:25.693Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title></title>
-    <link href="http://yoursite.com/2017/10/16/React%20Native/"/>
-    <id>http://yoursite.com/2017/10/16/React Native/</id>
-    <published>2017-10-16T14:40:16.467Z</published>
-    <updated>2017-10-17T14:51:34.053Z</updated>
+    <link href="http://yoursite.com/2017/10/18/React%20Native%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2017/10/18/React Native基础/</id>
+    <published>2017-10-17T16:09:22.788Z</published>
+    <updated>2017-10-17T16:08:25.693Z</updated>
     
     <content type="html"><![CDATA[<h3 id="react-native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><ul>
 <li><p>通过绑定<strong>状态机变量</strong>，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的<strong>组件</strong>将重新渲染。——观察者模式</p>
@@ -34,7 +34,21 @@
 </li>
 </ul>
 <h4 id="页面导航-属性"><a href="#页面导航、属性" class="headerlink" title="页面导航、属性"></a>页面导航、属性</h4><p>​    通过 Navigator 组件的 route 对页面跳转进行控制，同时，使用 Props 进行组件间信息的传递，Navigator 组件的 push 和 pop 可以对屏幕上的页面组件入栈和弹栈。</p>
-<h4 id="混合开发"><a href="#混合开发" class="headerlink" title="混合开发"></a>混合开发</h4><p>​</p>
+<h4 id="混合开发"><a href="#混合开发" class="headerlink" title="混合开发"></a>混合开发</h4><ol>
+<li><p>Android 平台混合开发</p>
+<p>​    Android 侧的接口类需要继承 ReactContextBaseJavaModule 类，使用 “@ReactMethod” 注解时函数可以被 React Native 侧调用，并且这些函数不能有返回值。</p>
+<p>​    建立一个 React 包管理类，这个类继承自 ReactPackage，并且实现 creatNativeModules 方法，将原生代码模块进行注册。</p>
+<p>​    最后，把 React 包管理类在ReactApplication 中实例化。</p>
+</li>
+<li><p>Android 与 React Native 的消息传递（Promise 机制）</p>
+<p>​    React Native 通过调用 Android 原生代码，传递信息；React Native 先监听原生信息，注册回调函数（React Native 调用原生代码是异步执行的），Android 原生代码完成处理后，向 React Native 侧发送信息，回调函数需要先注册，Android 侧无法主动回调，并且回调函数只能执行一次（需要保存 Promise 才能多次调用）。</p>
+</li>
+<li><p>跨语言常量</p>
+<p>在 Android 侧实现类似于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getConstants</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">final</span> Map&lt;String, Object&gt; contants = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">  	constants.put(<span class="string">"constantsName"</span>, constantValue);</div><div class="line">  	<span class="keyword">return</span> contants;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 React Native 侧， 通过 <code>nativeModuleName.contantsName</code> 来访问被导出的常量。</p>
+</li>
+</ol>
 ]]></content>
     
     <summary type="html">
