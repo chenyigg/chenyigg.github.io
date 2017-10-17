@@ -342,9 +342,18 @@
         
           
             <h3 id="react-native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><ul>
-<li>通过绑定<strong>状态机变量</strong>，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的<strong>组件</strong>将重新渲染。——观察者模式</li>
-<li>设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Native 组件封装了 UI 的交互逻辑，而无状态的 React Native 组件负责渲染 UI 界面。</li>
+<li><p>通过绑定<strong>状态机变量</strong>，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的<strong>组件</strong>将重新渲染。——观察者模式</p>
+</li>
+<li><p>设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Native 组件封装了 UI 的交互逻辑，而无状态的 React Native 组件负责渲染 UI 界面。</p>
+</li>
+<li><p>将形式参数的名字更换为和状态机变量的变量名相同，可以简化语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">onChangeText = &#123; (inputedNum) =&gt; <span class="keyword">this</span>.setState(&#123;inputedNum&#125;) &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>onChangeText = { this.updateNum }</code> 这种方式进行回调时，updateNum 函数中的 this 将不是指向组件的实例，因此，无法解析正确的 this，需要对 update、Num 进行绑定。</p>
+</li>
 </ul>
+<h4 id="页面导航-属性"><a href="#页面导航、属性" class="headerlink" title="页面导航、属性"></a>页面导航、属性</h4><p>​    通过 Navigator 组件的 route 对页面跳转进行控制，同时，使用 Props 进行组件间信息的传递，Navigator 组件的 push 和 pop 可以对屏幕上的页面组件入栈和弹栈。</p>
+<h4 id="混合开发"><a href="#混合开发" class="headerlink" title="混合开发"></a>混合开发</h4><p>​</p>
 
           
         
