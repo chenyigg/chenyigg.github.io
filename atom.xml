@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-17T16:08:25.693Z</updated>
+  <updated>2017-10-17T16:14:28.773Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>React Native 基础</title>
     <link href="http://yoursite.com/2017/10/18/React%20Native%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2017/10/18/React Native基础/</id>
-    <published>2017-10-17T16:09:22.788Z</published>
-    <updated>2017-10-17T16:08:25.693Z</updated>
+    <published>2017-10-17T16:14:34.000Z</published>
+    <updated>2017-10-17T16:14:28.773Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="react-native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><ul>
+    <content type="html"><![CDATA[<h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><ul>
 <li><p>通过绑定<strong>状态机变量</strong>，当组件的状态机发生改变时（即调用 this.setState() ），所有使用到状态机变量的<strong>组件</strong>将重新渲染。——观察者模式</p>
 </li>
 <li><p>设计思路：尽可能减少有状态的 React Native 组件的数目，通过有状态的 React Native 组件的状态机变量的值通过 props 传给无状态的 React Native 组件。这样，有状态的 React Native 组件封装了 UI 的交互逻辑，而无状态的 React Native 组件负责渲染 UI 界面。</p>
@@ -53,10 +53,13 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;react-native&quot;&gt;&lt;a href=&quot;#React-Native&quot; class=&quot;headerlink&quot; title=&quot;React Native&quot;&gt;&lt;/a&gt;React Native&lt;/h3&gt;&lt;h4 id=&quot;状态机&quot;&gt;&lt;a href=&quot;#状态机&quot; class
+      &lt;h4 id=&quot;状态机&quot;&gt;&lt;a href=&quot;#状态机&quot; class=&quot;headerlink&quot; title=&quot;状态机&quot;&gt;&lt;/a&gt;状态机&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;通过绑定&lt;strong&gt;状态机变量&lt;/strong&gt;，当组件的状态机发生改变时（即调用 this.setState
     
     </summary>
     
+    
+      <category term="React Native" scheme="http://yoursite.com/tags/React-Native/"/>
     
   </entry>
   
