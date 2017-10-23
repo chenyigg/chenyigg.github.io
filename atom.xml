@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-17T16:14:28.773Z</updated>
+  <updated>2017-10-23T06:26:37.948Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React Native 实现步骤</title>
+    <link href="http://yoursite.com/2017/10/23/React%20Native%20%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://yoursite.com/2017/10/23/React Native 实现步骤/</id>
+    <published>2017-10-23T06:26:34.000Z</published>
+    <updated>2017-10-23T06:26:37.948Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="react-native-实现步骤"><a href="#React-Native-实现步骤" class="headerlink" title="React Native 实现步骤"></a>React Native 实现步骤</h2><p>​    在整个应用设计中，始终按照自下而上的原则进行。</p>
+<h4 id="基础组件结构设计"><a href="#基础组件结构设计" class="headerlink" title="基础组件结构设计"></a>基础组件结构设计</h4><p>​    首先在 UI 界面上找出所有需要使用的基础组件。基础组件需要遵循“<strong>责任唯一原则</strong>”。意思是一个基础组件只应当负责一个工作，如果一个组件负责多个工作，就应当将这个组件拆分成多个子组件。</p>
+<p>​    对基础组件进行分层。分层就是把显示在同一行区域或列区域中的多个组件放在同一个 View 中。</p>
+<p>​    从 UI 界面的底部（最基础的 React Native 组件）开始构建，每分出一层组件构成了一个上层 React Native 组件，直到向上分层到一个界面的根 View 组件。</p>
+<h4 id="react-native-组件分层"><a href="#React-Native-组件分层" class="headerlink" title="React Native 组件分层"></a>React Native 组件分层</h4><ol>
+<li>分析界面之间的联系</li>
+<li>确定数据的显示者与拥有者</li>
+<li>确定状态机变量</li>
+<li>确定各事件的接受者与处理者</li>
+<li>非界面触发事件的接收者与处理者（后退键监听、混合开发消息监听等）</li>
+</ol>
+<h4 id="实现各组件业务逻辑"><a href="#实现各组件业务逻辑" class="headerlink" title="实现各组件业务逻辑"></a>实现各组件业务逻辑</h4><p>​    业务逻辑包括但不限于：</p>
+<ol>
+<li><p>直接渲染状态机变量和属性</p>
+</li>
+<li><p>将状态机变量以属性的方式交给下层组件</p>
+</li>
+<li><p>实现状态机变量的其他业务控制逻辑</p>
+</li>
+<li><p>无直接关系的 React Native 组件间的传递：</p>
+<p>​    通过无直接关系的公共父组件来间接传递消息。对于这种间接传递消息，消息发送者不需要指定消息接受者，由公共父组件按业务逻辑来判定消息接受者是谁。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;react-native-实现步骤&quot;&gt;&lt;a href=&quot;#React-Native-实现步骤&quot; class=&quot;headerlink&quot; title=&quot;React Native 实现步骤&quot;&gt;&lt;/a&gt;React Native 实现步骤&lt;/h2&gt;&lt;p&gt;​    在整个应用
+    
+    </summary>
+    
+    
+      <category term="React Native" scheme="http://yoursite.com/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>React Native 基础</title>
@@ -1027,41 +1070,6 @@
     
       &lt;h1 id=&quot;装饰者模式&quot;&gt;&lt;a href=&quot;#装饰者模式&quot; class=&quot;headerlink&quot; title=&quot;装饰者模式&quot;&gt;&lt;/a&gt;装饰者模式&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;装饰者模式&lt;/strong&gt; 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式 之 观察者模式</title>
-    <link href="http://yoursite.com/2017/07/24/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2017/07/24/观察者模式/</id>
-    <published>2017-07-24T02:05:07.000Z</published>
-    <updated>2017-08-31T15:06:20.997Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><blockquote>
-<p><strong>观察者模式</strong> 定义了对象之间的<em>一对多</em>依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。 <a id="more"></a> </p>
-</blockquote>
-<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://img.mukewang.com/57a0c6a10001c6d708190539.png" alt=""></p>
-<h3 id="松耦合的威力"><a href="#松耦合的威力" class="headerlink" title="松耦合的威力"></a>松耦合的威力</h3><blockquote>
-<p>当两个对象之间 <strong>松耦合</strong> ，它们依然可以交互，但是不太清楚彼此的 <strong>细节</strong> 。</p>
-<p>观察者模式提供了一种对象设计，让主题和观察者之间松耦合。</p>
-</blockquote>
-<p>​    主题只知道观察者实现了某个接口（也就是 <strong>Observer 接口</strong>）。主题不需要知道观察者的具体类是谁、做了些什么或其他任何细节。主题唯一依赖的东西是一个实现 Observer 接口的 <strong>对象列表</strong> ，我们可以随时增加观察者。</p>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-为了交互对象之间的松耦合设计而努力"><a href="#1-为了交互对象之间的松耦合设计而努力。" class="headerlink" title="1. 为了交互对象之间的松耦合设计而努力。"></a>1. 为了交互对象之间的松耦合设计而努力。</h4><p>​    松耦合的设计之所以能让我们建立有 <em>弹性</em> 的 OO 系统，能够应对变化，是因为对象之间的 <strong>相互依赖</strong> 降到了最低。</p>
-<h4 id="2-找出程序中会变化的方面然后将其和固定不变的方面相分类"><a href="#2-找出程序中会变化的方面，然后将其和固定不变的方面相分类。" class="headerlink" title="2. 找出程序中会变化的方面，然后将其和固定不变的方面相分类。"></a>2. 找出程序中会变化的方面，然后将其和固定不变的方面相分类。</h4><p>​    在观察者模式中，会改变的是主题的状态，以及观察者的数目和类型。用这个模式，你可以改变依赖于主题状态的对象，却不必改变主题。这就叫 <strong>提前规划</strong>！</p>
-<h4 id="3-针对接口编程不针对实现编程"><a href="#3-针对接口编程，不针对实现编程。" class="headerlink" title="3. 针对接口编程，不针对实现编程。"></a>3. 针对接口编程，不针对实现编程。</h4><p>​    主题与观察者都使用 <strong>接口</strong> ：观察者利用主题的接口向主题注册，而主题利用观察者接口通知观察者。这样就可以让两者之间运转正常，又同时具有松耦合的优点。</p>
-<h4 id="4-多用组合少用继承"><a href="#4-多用组合，少用继承。" class="headerlink" title="4. 多用组合，少用继承。"></a>4. 多用组合，少用继承。</h4><p>​    观察者模式利用 “组合” 将许多观察者 <strong>组合</strong> 进主题中，对象之间的这种关系不是通过继承产生的，而是通过运行时利用组合的方式而产生的。</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>​    有多个观察者时，不可以依赖 <strong>特定</strong> 的通知次序。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;观察者模式&quot;&gt;&lt;a href=&quot;#观察者模式&quot; class=&quot;headerlink&quot; title=&quot;观察者模式&quot;&gt;&lt;/a&gt;观察者模式&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;观察者模式&lt;/strong&gt; 定义了对象之间的&lt;em&gt;一对多&lt;/em&gt;依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
     
     </summary>
     

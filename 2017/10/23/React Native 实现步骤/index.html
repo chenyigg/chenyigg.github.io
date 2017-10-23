@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="React Native," />
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="策略模式 策略模式 定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立与使用算法的客户。">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="React Native 实现步骤​    在整个应用设计中，始终按照自下而上的原则进行。 基础组件结构设计​    首先在 UI 界面上找出所有需要使用的基础组件。基础组件需要遵循“责任唯一原则”。意思是一个基础组件只应当负责一个工作，如果一个组件负责多个工作，就应当将这个组件拆分成多个子组件。 ​    对基础组件进行分层。分层就是把显示在同一行区域或列区域中的多个组件放在同一个 View 中">
+<meta name="keywords" content="React Native">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式 之 策略模式">
-<meta property="og:url" content="http://yoursite.com/2017/07/23/策略模式/index.html">
+<meta property="og:title" content="React Native 实现步骤">
+<meta property="og:url" content="http://yoursite.com/2017/10/23/React Native 实现步骤/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="策略模式 策略模式 定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立与使用算法的客户。">
+<meta property="og:description" content="React Native 实现步骤​    在整个应用设计中，始终按照自下而上的原则进行。 基础组件结构设计​    首先在 UI 界面上找出所有需要使用的基础组件。基础组件需要遵循“责任唯一原则”。意思是一个基础组件只应当负责一个工作，如果一个组件负责多个工作，就应当将这个组件拆分成多个子组件。 ​    对基础组件进行分层。分层就是把显示在同一行区域或列区域中的多个组件放在同一个 View 中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-31T15:05:32.269Z">
+<meta property="og:updated_time" content="2017-10-23T06:26:37.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式 之 策略模式">
-<meta name="twitter:description" content="策略模式 策略模式 定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的变化独立与使用算法的客户。">
+<meta name="twitter:title" content="React Native 实现步骤">
+<meta name="twitter:description" content="React Native 实现步骤​    在整个应用设计中，始终按照自下而上的原则进行。 基础组件结构设计​    首先在 UI 界面上找出所有需要使用的基础组件。基础组件需要遵循“责任唯一原则”。意思是一个基础组件只应当负责一个工作，如果一个组件负责多个工作，就应当将这个组件拆分成多个子组件。 ​    对基础组件进行分层。分层就是把显示在同一行区域或列区域中的多个组件放在同一个 View 中">
 
 
 
@@ -138,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/23/策略模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/23/React Native 实现步骤/"/>
 
 
 
 
 
-  <title>设计模式 之 策略模式 | Hexo</title>
+  <title>React Native 实现步骤 | Hexo</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/23/策略模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/23/React Native 实现步骤/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈奕(Yi Chen)">
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式 之 策略模式</h1>
+          <h1 class="post-title" itemprop="name headline">React Native 实现步骤</h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T20:10:27+08:00">
-                2017-07-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T14:26:34+08:00">
+                2017-10-23
               </time>
             
 
@@ -338,15 +338,29 @@
       
 
       
-        <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><blockquote>
-<p><strong>策略模式</strong> 定义了算法族，分别<em>封装</em>起来，让它们之间可以相互<em>替换</em>，此模式让算法的变化独立与使用算法的客户。 <a id="more"></a> </p>
-</blockquote>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h4 id="1-找出应用中可能需要变化之处把它们独立出来不要和那些不需要变化的代码混在一起"><a href="#1-找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。" class="headerlink" title="1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。"></a>1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。</h4><p>​    把会 <strong>变化</strong> 的部分取出并 <strong><em>封装</em></strong> 起来，以便以后可以轻易地改动或扩充此部分，而不影响不需要变化的其他部分。</p>
-<p>​    所有的模式都提供了一套方法让 “系统中的某部分改变 <strong>不会影响</strong> 其他部分” 。</p>
-<h4 id="2-针对接口编程而不是针对实现编程"><a href="#2-针对接口编程，而不是针对实现编程。" class="headerlink" title="2. 针对接口编程，而不是针对实现编程。"></a>2. 针对接口编程，而不是针对实现编程。</h4><p>​    以前的做法：行为来自超类的具体实现，或是继承某个借口并有子类自行实现而来。装两种做法都 <strong>依赖于</strong> “ 实现” ，没办法更改行为（除非写更多代码）。</p>
-<p>​    新设计：子类将使用接口所表示的行为，特定的具体行为编写在<em>实现了接口的类</em>中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Duck</span> </span>&#123;</div><div class="line">  	<span class="comment">// 每只鸭子都会引用实现该行为接口的对象</span></div><div class="line">  	QuackBehavior quackBehavior;</div><div class="line">  	...</div><div class="line">  	<span class="comment">// 通过委托 quackBehavior 对象，处理行为</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performQuack</span><span class="params">()</span> </span>&#123;</div><div class="line">      quackBehavior.quack();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="3-多用组合少用继承"><a href="#3-多用组合，少用继承。" class="headerlink" title="3. 多用组合，少用继承。"></a>3. 多用组合，少用继承。</h4><p>​    使用组合建立系统具有很大的 <em>弹性</em> ，不仅可将算法族封装成类，更可以 “在运行时 <strong>动态</strong> 地改变行为” 。</p>
+        <h2 id="react-native-实现步骤"><a href="#React-Native-实现步骤" class="headerlink" title="React Native 实现步骤"></a>React Native 实现步骤</h2><p>​    在整个应用设计中，始终按照自下而上的原则进行。</p>
+<h4 id="基础组件结构设计"><a href="#基础组件结构设计" class="headerlink" title="基础组件结构设计"></a>基础组件结构设计</h4><p>​    首先在 UI 界面上找出所有需要使用的基础组件。基础组件需要遵循“<strong>责任唯一原则</strong>”。意思是一个基础组件只应当负责一个工作，如果一个组件负责多个工作，就应当将这个组件拆分成多个子组件。</p>
+<p>​    对基础组件进行分层。分层就是把显示在同一行区域或列区域中的多个组件放在同一个 View 中。</p>
+<p>​    从 UI 界面的底部（最基础的 React Native 组件）开始构建，每分出一层组件构成了一个上层 React Native 组件，直到向上分层到一个界面的根 View 组件。</p>
+<h4 id="react-native-组件分层"><a href="#React-Native-组件分层" class="headerlink" title="React Native 组件分层"></a>React Native 组件分层</h4><ol>
+<li>分析界面之间的联系</li>
+<li>确定数据的显示者与拥有者</li>
+<li>确定状态机变量</li>
+<li>确定各事件的接受者与处理者</li>
+<li>非界面触发事件的接收者与处理者（后退键监听、混合开发消息监听等）</li>
+</ol>
+<h4 id="实现各组件业务逻辑"><a href="#实现各组件业务逻辑" class="headerlink" title="实现各组件业务逻辑"></a>实现各组件业务逻辑</h4><p>​    业务逻辑包括但不限于：</p>
+<ol>
+<li><p>直接渲染状态机变量和属性</p>
+</li>
+<li><p>将状态机变量以属性的方式交给下层组件</p>
+</li>
+<li><p>实现状态机变量的其他业务控制逻辑</p>
+</li>
+<li><p>无直接关系的 React Native 组件间的传递：</p>
+<p>​    通过无直接关系的公共父组件来间接传递消息。对于这种间接传递消息，消息发送者不需要指定消息接受者，由公共父组件按业务逻辑来判定消息接受者是谁。</p>
+</li>
+</ol>
 
       
     </div>
@@ -364,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/React-Native/" rel="tag"># React Native</a>
           
         </div>
       
@@ -377,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/22/Gradle-学习笔记/" rel="next" title="Gradle 学习笔记">
-                <i class="fa fa-chevron-left"></i> Gradle 学习笔记
+              <a href="/2017/10/18/React Native基础/" rel="next" title="React Native 基础">
+                <i class="fa fa-chevron-left"></i> React Native 基础
               </a>
             
           </div>
@@ -386,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/24/观察者模式/" rel="prev" title="设计模式 之 观察者模式">
-                设计模式 之 观察者模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -523,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">1.0.1.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-找出应用中可能需要变化之处把它们独立出来不要和那些不需要变化的代码混在一起"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1. 找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-针对接口编程而不是针对实现编程"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">2. 针对接口编程，而不是针对实现编程。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-多用组合少用继承"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">3. 多用组合，少用继承。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#react-native-实现步骤"><span class="nav-number">1.</span> <span class="nav-text">React Native 实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础组件结构设计"><span class="nav-number">1.0.1.</span> <span class="nav-text">基础组件结构设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react-native-组件分层"><span class="nav-number">1.0.2.</span> <span class="nav-text">React Native 组件分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现各组件业务逻辑"><span class="nav-number">1.0.3.</span> <span class="nav-text">实现各组件业务逻辑</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
